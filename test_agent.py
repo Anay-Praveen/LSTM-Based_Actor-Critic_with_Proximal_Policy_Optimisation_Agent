@@ -2,19 +2,43 @@ import gymnasium as gym
 import os
 import time
 import sys
+import logging
+import traceback # Import traceback for detailed error logging
 
 # --- Import the Agent and Utilities ---
 try:
-
+    # Ensure agent.py and other necessary files are importable
     from agent import NASIMOffensiveAgent
-    from utils import logger, device # Assuming logger and device are defined in utils
+    # Make sure logger and device are correctly defined/imported in your utils.py
+    from utils import logger, device
 except ImportError as e:
     print(f"Error importing necessary modules: {e}")
-    # Updated error message
     print("Please ensure agent.py, utils.py, networks.py, memory.py, and plot.py are accessible.")
     sys.exit(1)
+except NameError as e:
+    # Handle cases where logger or device might not be defined in utils
+    print(f"Error importing from utils: {e}. Ensure logger and device are defined.")
+    # Set up a basic logger if utils.logger is missing
+    logger = logging.getLogger("test_agent_fallback")
+    if not logger.hasHandlers():
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        logger.setLevel(logging.INFO)
+    # Set device fallback if utils.device is missing
+    try:
+        import torch
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        logger.warning("utils.device not found, falling back to auto-detected device.")
+    except ImportError:
+        logger.error("PyTorch not found. Cannot set device.")
+        sys.exit(1)
+
 
 # --- Define Available Scenarios ---
+# Ensure this list matches the scenarios your models were trained on
+# and the directory names within 'scenario_checkpoints'
 AVAILABLE_SCENARIOS = [
     'tiny',
     'tiny-hard',
@@ -27,7 +51,16 @@ AVAILABLE_SCENARIOS = [
     'medium-multi-site',
 ]
 
-# --- Helper Functions for User Input ---
+# --- Base directory where scenario-specific models are saved ---
+SCENARIO_CHECKPOINT_DIR = "scenario_checkpoints"
+
+# --- Fixed Testing Parameters ---
+NUM_EPISODES_PER_SCENARIO = 100
+RENDER_ENVIRONMENT = False
+DETERMINISTIC_ACTIONS = False # False = sampling actions
+
+
+# --- Helper Functions for User Input (Simplified) ---
 def get_validated_input(prompt, valid_options=None, input_type=str):
     """Gets and validates user input."""
     while True:
@@ -53,19 +86,7 @@ def get_validated_input(prompt, valid_options=None, input_type=str):
             sys.exit(0)
 
 
-def get_yes_no_input(prompt):
-    """Gets a 'yes' or 'no' input, returns True for yes, False for no."""
-    while True:
-        response = input(prompt + " (yes/no): ").strip().lower()
-        if response in ['yes', 'y']:
-            return True
-        elif response in ['no', 'n']:
-            return False
-        else:
-            print("Invalid input. Please enter 'yes' or 'no'.")
-
-
-# --- Main Testing Logic ---
+# --- Main Testing Logic Function (Takes agent as input) ---
 def run_test(agent, scenario_name, num_episodes, render_env, deterministic_actions):
     """Runs the agent's test method for a given scenario."""
     logger.info(f"\n--- Testing Scenario: {scenario_name} ---")
@@ -74,89 +95,104 @@ def run_test(agent, scenario_name, num_episodes, render_env, deterministic_actio
             scenario_name=scenario_name,
             num_episodes=num_episodes,
             render=render_env,
-            deterministic=deterministic_actions # Pass the determined value
+            deterministic=deterministic_actions
         )
-        logger.info(f"Testing completed for {scenario_name}.")
         if test_rewards:
              avg_reward = sum(test_rewards) / len(test_rewards)
-             logger.info(f"Average reward over {len(test_rewards)} episodes: {avg_reward:.3f}")
+             logger.info(f"Testing completed for {scenario_name}. Average reward over {len(test_rewards)} episodes: {avg_reward:.3f}")
+             return avg_reward
         else:
-            logger.warning("No rewards recorded, testing might have failed or skipped episodes.")
+            logger.warning(f"No rewards recorded for {scenario_name}, testing might have failed or skipped episodes.")
+            return None
 
     except Exception as e:
         logger.error(f"An error occurred during testing on scenario '{scenario_name}': {e}")
-        import traceback
-        logger.error(traceback.format_exc()) # Log full traceback
+        logger.error(traceback.format_exc())
+        return None
 
 
 def main():
     """
-    Main function to load and test the NASIM Offensive Agent interactively.
+    Main function to test NASIM Offensive Agents by loading scenario-specific models,
+    with fixed episode count and rendering settings.
     """
-    print("--- NASIM Offensive Agent Interactive Test ---")
+    print("--- NASIM Offensive Agent Interactive Test (Scenario-Specific Models) ---")
+    print(f" Episodes per scenario fixed to: {NUM_EPISODES_PER_SCENARIO}")
+    print(f" Environment rendering fixed to: {'Yes' if RENDER_ENVIRONMENT else 'No'}")
+    print(f" Action selection fixed to: {'Deterministic' if DETERMINISTIC_ACTIONS else 'Sampling'}")
+
 
     # 1. Choose Test Type
     print("\nSelect Testing Mode:")
-    print("  1: Curriculum-based Testing (test one model on all scenarios)")
+    print(f"  1: Curriculum-based Testing ({len(AVAILABLE_SCENARIOS)} scenarios sequentially)")
     print("  2: Individual Scenario Testing")
     test_mode = get_validated_input("Enter choice (1 or 2): ", valid_options=[1, 2], input_type=int)
 
-    # 2. Get Common Parameters
-    print("\nEnter testing parameters:")
-    model_path = ""
-    while not model_path or not os.path.exists(model_path):
-         model_path_input = input("Enter path to the saved agent model file (.pt): ").strip()
-         if os.path.exists(model_path_input):
-             model_path = model_path_input
-         else:
-             print(f"Error: Model file not found at '{model_path_input}'. Please try again.")
-
-    num_episodes = get_validated_input("Enter number of episodes per scenario: ", input_type=int)
-    while num_episodes <= 0:
-         print("Number of episodes must be positive.")
-         num_episodes = get_validated_input("Enter number of episodes per scenario: ", input_type=int)
-
-    render_env = get_yes_no_input("Render the environment during testing?")
-
-    # Deterministic actions are now always False (sampling actions)
-    deterministic_actions = False
-    logger.info("Deterministic actions set to False (sampling actions).") # Log the setting
-
-    # 3. Instantiate Agent and Load Model
-    logger.info(f"\nLoading model from: {model_path}")
-    logger.info(f"Using Device: {device}")
-
+    # --- Dummy Environment for Agent Initialization ---
     try:
-        # Create dummy env for initialization using a known simple scenario
+        logger.info("Creating dummy environment for agent initialization...")
         dummy_env = gym.make("nasim:TinyPO-v0")
-        # Initialize the agent using the dummy environment
-        agent = NASIMOffensiveAgent(env=dummy_env)
-        # Load the saved model state
-        agent.load(model_path)
-        # Close the dummy environment as it's no longer needed
-        dummy_env.close()
-        logger.info("Agent instantiated and model loaded successfully.")
-    except gym.error.Error as e:
-        logger.error(f"Failed to create dummy Gym environment for agent initialization: {e}")
-        return
-    except FileNotFoundError:
-        logger.error(f"Model file not found during load attempt: {model_path}")
-        return
+        logger.info("Dummy environment created.")
     except Exception as e:
-        logger.error(f"Failed to instantiate or load agent: {e}")
-        import traceback
-        logger.error(traceback.format_exc()) # Log full traceback for debugging
+        logger.error(f"Failed to create dummy Gym environment for agent initialization: {e}")
+        logger.error(traceback.format_exc())
         return
 
-    # 4. Execute Chosen Test Mode
+    # --- Execute Chosen Test Mode ---
+    all_results = {}
+
     if test_mode == 1:
-        # Curriculum-based Testing
-        logger.info("\n--- Starting Curriculum Test ---")
-        logger.info(f"Testing model '{model_path}' on all {len(AVAILABLE_SCENARIOS)} scenarios.")
+        # Curriculum-based Testing (Sequential, Scenario-Specific Models)
+        logger.info("\n--- Starting Sequential Curriculum Test (Scenario-Specific Models) ---")
+        logger.info(f"Testing sequentially on all {len(AVAILABLE_SCENARIOS)} scenarios.")
+        logger.info(f"Looking for models in base directory: '{SCENARIO_CHECKPOINT_DIR}'")
+
         for scenario in AVAILABLE_SCENARIOS:
-            run_test(agent, scenario, num_episodes, render_env, deterministic_actions)
+            logger.info(f"\n{'='*20} Preparing Scenario: {scenario} {'='*20}")
+            scenario_model_path = os.path.join(SCENARIO_CHECKPOINT_DIR, scenario, "final_model.pt")
+
+            if not os.path.exists(scenario_model_path):
+                logger.warning(f"Model file not found for scenario '{scenario}' at '{scenario_model_path}'. Skipping.")
+                all_results[scenario] = None
+                continue
+
+            try:
+                # Instantiate a FRESH agent instance for each scenario
+                logger.info(f"Instantiating agent using dummy env...")
+                agent = NASIMOffensiveAgent(env=dummy_env) # Initialize with dummy
+
+                # Load the SCENARIO-SPECIFIC model
+                logger.info(f"Loading model for '{scenario}' from: {scenario_model_path}")
+                logger.info(f"Using Device: {device}")
+                agent.load(scenario_model_path)
+                logger.info(f"Model for '{scenario}' loaded successfully.")
+
+                # Run the test for this scenario with the loaded agent
+                avg_reward = run_test(
+                    agent,
+                    scenario,
+                    NUM_EPISODES_PER_SCENARIO, # Use fixed value
+                    RENDER_ENVIRONMENT,        # Use fixed value
+                    DETERMINISTIC_ACTIONS      # Use fixed value
+                )
+                all_results[scenario] = avg_reward
+
+            except FileNotFoundError:
+                logger.error(f"Model file not found during load attempt: {scenario_model_path}")
+                all_results[scenario] = None
+            except Exception as e:
+                logger.error(f"Failed to instantiate, load, or test agent for scenario '{scenario}': {e}")
+                logger.error(traceback.format_exc())
+                all_results[scenario] = None
+
             time.sleep(1) # Small pause between scenarios
-        logger.info("\n--- Curriculum Test Finished ---")
+
+        logger.info("\n--- Sequential Curriculum Test Finished ---")
+        logger.info("Average Rewards per Scenario:")
+        for scenario, avg_reward in all_results.items():
+             result_str = f"{avg_reward:.2f}" if avg_reward is not None else "Skipped/Error"
+             logger.info(f"  {scenario}: {result_str}")
+
 
     elif test_mode == 2:
         # Individual Scenario Testing
@@ -173,35 +209,73 @@ def main():
             if scenario_choice == 0:
                 logger.info("Exiting individual testing.")
                 break
-            else:
-                selected_scenario = AVAILABLE_SCENARIOS[scenario_choice - 1]
-                run_test(agent, selected_scenario, num_episodes, render_env, deterministic_actions)
 
-            # Ask to continue
-            if not get_yes_no_input("\nTest another individual scenario?"):
-                break
+            selected_scenario = AVAILABLE_SCENARIOS[scenario_choice - 1]
+            logger.info(f"\n{'='*20} Preparing Scenario: {selected_scenario} {'='*20}")
+            scenario_model_path = os.path.join(SCENARIO_CHECKPOINT_DIR, selected_scenario, "final_model.pt")
+
+            if not os.path.exists(scenario_model_path):
+                logger.warning(f"Model file not found for scenario '{selected_scenario}' at '{scenario_model_path}'. Cannot test.")
+            else:
+                try:
+                    # Instantiate a FRESH agent instance
+                    logger.info(f"Instantiating agent using dummy env...")
+                    agent = NASIMOffensiveAgent(env=dummy_env) # Initialize with dummy
+
+                    # Load the SCENARIO-SPECIFIC model
+                    logger.info(f"Loading model for '{selected_scenario}' from: {scenario_model_path}")
+                    logger.info(f"Using Device: {device}")
+                    agent.load(scenario_model_path)
+                    logger.info(f"Model for '{selected_scenario}' loaded successfully.")
+
+                    # Run the test
+                    run_test(
+                        agent,
+                        selected_scenario,
+                        NUM_EPISODES_PER_SCENARIO, # Use fixed value
+                        RENDER_ENVIRONMENT,        # Use fixed value
+                        DETERMINISTIC_ACTIONS      # Use fixed value
+                    )
+
+                except FileNotFoundError:
+                    logger.error(f"Model file not found during load attempt: {scenario_model_path}")
+                except Exception as e:
+                    logger.error(f"Failed to instantiate, load, or test agent for scenario '{selected_scenario}': {e}")
+                    logger.error(traceback.format_exc())
+
+            # Ask to continue - simplifying this slightly
+            continue_testing = get_validated_input("\nTest another individual scenario? (yes/no): ", valid_options=['yes', 'y', 'no', 'n'])
+            if continue_testing.lower() in ['no', 'n']:
+                 break
         logger.info("\n--- Individual Scenario Test Finished ---")
+
+    # Clean up dummy environment
+    try:
+        dummy_env.close()
+        logger.info("Dummy environment closed.")
+    except Exception as e:
+        logger.warning(f"Could not close dummy environment: {e}")
+
 
     print("\n--- NASIM Offensive Agent Interactive Test Complete ---")
 
 
 # --- Run the main function directly when the script is executed ---
 if __name__ == "__main__":
-
-    import logging
-    # Check if the specific logger we use ('lstm_ppo_agent' from utils) has handlers
-    # If not, set up a basic configuration.
-    agent_logger = logging.getLogger("lstm_ppo_agent") # Get the specific logger instance
+    # Basic logger setup if not handled by utils.py
+    agent_logger = logging.getLogger("lstm_ppo_agent") # Match logger name used in agent.py
     if not agent_logger.hasHandlers():
-         # Configure the specific logger if it hasn't been configured yet
-         # This avoids interfering with potential root logger configurations.
          handler = logging.StreamHandler()
-         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+         formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
          handler.setFormatter(formatter)
          agent_logger.addHandler(handler)
          agent_logger.setLevel(logging.INFO)
-         # Prevent messages from propagating to the root logger if it has handlers
          agent_logger.propagate = False
 
+         test_script_logger = logging.getLogger("test_agent_fallback")
+         if not test_script_logger.hasHandlers():
+              test_script_logger.addHandler(handler)
+              test_script_logger.setLevel(logging.INFO)
+              test_script_logger.propagate = False
 
     main()

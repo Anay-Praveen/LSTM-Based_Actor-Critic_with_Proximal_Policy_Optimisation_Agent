@@ -10581,3 +10581,743 @@ Completed training on medium-multi-site
 2025-05-04 00:17:29,459 [INFO] Final model saved to curriculum_experiments/20250503_205342/final_model.pt
 2025-05-04 00:17:29,459 [INFO] Curriculum training finished.
 2025-05-04 00:17:29,459 [INFO] Curriculum Results: {'total_scenarios': 9, 'completed_scenarios': 9, 'curriculum_time': 12227.163670778275, 'scenario_results': [{'scenario': 'tiny', 'completed': True, 'episodes': 500, 'training_time': 74.45788025856018, 'avg_reward': 136.5019989013672, 'best_reward': 189.0, 'successful_episodes': 500, 'success_rate': 1.0}, {'scenario': 'tiny-hard', 'completed': True, 'episodes': 500, 'training_time': 79.57726311683655, 'avg_reward': 116.26799774169922, 'best_reward': 187.0, 'successful_episodes': 500, 'success_rate': 1.0}, {'scenario': 'tiny-small', 'completed': True, 'episodes': 500, 'training_time': 229.69536066055298, 'avg_reward': -62.38600158691406, 'best_reward': 148.0, 'successful_episodes': 500, 'success_rate': 1.0}, {'scenario': 'small', 'completed': True, 'episodes': 500, 'training_time': 458.0062646865845, 'avg_reward': -288.108, 'best_reward': 105.0, 'successful_episodes': 497, 'success_rate': 0.994}, {'scenario': 'small-honeypot', 'completed': True, 'episodes': 500, 'training_time': 222.35263061523438, 'avg_reward': -46.06800079345703, 'best_reward': 155.0, 'successful_episodes': 500, 'success_rate': 1.0}, {'scenario': 'small-linear', 'completed': True, 'episodes': 500, 'training_time': 731.9583210945129, 'avg_reward': -558.010009765625, 'best_reward': -10.0, 'successful_episodes': 475, 'success_rate': 0.95}, {'scenario': 'medium', 'completed': True, 'episodes': 2000, 'training_time': 6798.654201030731, 'avg_reward': -1588.866, 'best_reward': -59.0, 'successful_episodes': 1443, 'success_rate': 0.7215}, {'scenario': 'medium-single-site', 'completed': True, 'episodes': 2000, 'training_time': 904.6047275066376, 'avg_reward': -49.143001556396484, 'best_reward': 191.0, 'successful_episodes': 1996, 'success_rate': 0.998}, {'scenario': 'medium-multi-site', 'completed': True, 'episodes': 2000, 'training_time': 2724.8060278892517, 'avg_reward': -512.9509887695312, 'best_reward': 112.0, 'successful_episodes': 1968, 'success_rate': 0.984}], 'final_model_path': 'curriculum_experiments/20250503_205342/final_model.pt'}
+2025-05-04 02:14:38,394 [INFO] Using device: cuda (NVIDIA GeForce RTX 4070 SUPER)
+2025-05-04 02:15:34,888 [INFO] Using device: cuda (NVIDIA GeForce RTX 4070 SUPER)
+2025-05-04 02:15:48,056 [INFO] Deterministic actions set to False (sampling actions).
+2025-05-04 02:15:48,056 [INFO] 
+Loading model from: curriculum_experiments/20250503_205342/final_model.pt
+
+2025-05-04 02:50:27,232 [INFO] Using device: cuda (NVIDIA GeForce RTX 4070 SUPER)
+2025-05-04 02:50:31,690 [INFO] Creating dummy environment for agent initialization...
+2025-05-04 02:50:31,697 [INFO] Dummy environment created.
+2025-05-04 02:50:31,697 [INFO] 
+--- Starting Sequential Curriculum Test (Scenario-Specific Models) ---
+2025-05-04 02:50:31,697 [INFO] Testing sequentially on all 9 scenarios.
+2025-05-04 02:50:31,697 [INFO] Looking for models in base directory: 'scenario_checkpoints'
+2025-05-04 02:50:31,697 [INFO] 
+==================== Preparing Scenario: tiny ====================
+2025-05-04 02:50:31,697 [INFO] Instantiating agent using dummy env...
+2025-05-04 02:50:32,136 [INFO] Model initialized with 720,275 trainable parameters
+2025-05-04 02:50:32,136 [INFO] Initial GPU memory: 2.7MB / 24000000.0MB
+2025-05-04 02:50:32,136 [INFO] Loading model for 'tiny' from: scenario_checkpoints/tiny/final_model.pt
+2025-05-04 02:50:32,136 [INFO] Using Device: cuda
+2025-05-04 02:50:32,136 [INFO] Loading checkpoint from: scenario_checkpoints/tiny/final_model.pt
+2025-05-04 02:50:32,145 [INFO] Loaded LSTM and A2C states (strict=True).
+2025-05-04 02:50:32,145 [INFO] Loaded optimizer state.
+2025-05-04 02:50:32,145 [INFO] Loaded scheduler state.
+2025-05-04 02:50:32,145 [INFO] Agent loaded successfully from scenario_checkpoints/tiny/final_model.pt
+2025-05-04 02:50:32,145 [INFO] Model for 'tiny' loaded successfully.
+2025-05-04 02:50:32,145 [INFO] 
+--- Testing Scenario: tiny ---
+2025-05-04 02:50:32,148 [INFO] 
+Testing agent on tiny for 100 episodes
+2025-05-04 02:50:32,148 [INFO] Using deterministic actions: False
+2025-05-04 02:50:32,322 [INFO] Test Episode 1/100 | Reward: 179.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:32,406 [INFO] Test Episode 2/100 | Reward: 174.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:32,473 [INFO] Test Episode 3/100 | Reward: 178.00 | Length: 22 | Success: Yes
+2025-05-04 02:50:32,514 [INFO] Test Episode 4/100 | Reward: 179.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:32,680 [INFO] Test Episode 5/100 | Reward: 128.00 | Length: 72 | Success: Yes
+2025-05-04 02:50:32,758 [INFO] Test Episode 6/100 | Reward: 170.00 | Length: 30 | Success: Yes
+2025-05-04 02:50:32,823 [INFO] Test Episode 7/100 | Reward: 168.00 | Length: 32 | Success: Yes
+2025-05-04 02:50:32,911 [INFO] Test Episode 8/100 | Reward: 163.00 | Length: 37 | Success: Yes
+2025-05-04 02:50:32,980 [INFO] Test Episode 9/100 | Reward: 168.00 | Length: 32 | Success: Yes
+2025-05-04 02:50:33,004 [INFO] Test Episode 10/100 | Reward: 188.00 | Length: 12 | Success: Yes
+2025-05-04 02:50:33,060 [INFO] Test Episode 11/100 | Reward: 172.00 | Length: 28 | Success: Yes
+2025-05-04 02:50:33,112 [INFO] Test Episode 12/100 | Reward: 174.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:33,164 [INFO] Test Episode 13/100 | Reward: 184.00 | Length: 16 | Success: Yes
+2025-05-04 02:50:33,231 [INFO] Test Episode 14/100 | Reward: 167.00 | Length: 33 | Success: Yes
+2025-05-04 02:50:33,263 [INFO] Test Episode 15/100 | Reward: 184.00 | Length: 16 | Success: Yes
+2025-05-04 02:50:33,356 [INFO] Test Episode 16/100 | Reward: 153.00 | Length: 47 | Success: Yes
+2025-05-04 02:50:33,407 [INFO] Test Episode 17/100 | Reward: 182.00 | Length: 18 | Success: Yes
+2025-05-04 02:50:33,494 [INFO] Test Episode 18/100 | Reward: 157.00 | Length: 43 | Success: Yes
+2025-05-04 02:50:33,546 [INFO] Test Episode 19/100 | Reward: 174.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:33,589 [INFO] Test Episode 20/100 | Reward: 178.00 | Length: 22 | Success: Yes
+2025-05-04 02:50:33,655 [INFO] Test Episode 21/100 | Reward: 176.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:33,726 [INFO] Test Episode 22/100 | Reward: 166.00 | Length: 34 | Success: Yes
+2025-05-04 02:50:33,762 [INFO] Test Episode 23/100 | Reward: 182.00 | Length: 18 | Success: Yes
+2025-05-04 02:50:33,864 [INFO] Test Episode 24/100 | Reward: 149.00 | Length: 51 | Success: Yes
+2025-05-04 02:50:33,926 [INFO] Test Episode 25/100 | Reward: 175.00 | Length: 25 | Success: Yes
+2025-05-04 02:50:33,979 [INFO] Test Episode 26/100 | Reward: 174.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:34,091 [INFO] Test Episode 27/100 | Reward: 148.00 | Length: 52 | Success: Yes
+2025-05-04 02:50:34,220 [INFO] Test Episode 28/100 | Reward: 179.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:34,476 [INFO] Test Episode 29/100 | Reward: 169.00 | Length: 31 | Success: Yes
+2025-05-04 02:50:34,535 [INFO] Test Episode 30/100 | Reward: 176.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:34,569 [INFO] Test Episode 31/100 | Reward: 183.00 | Length: 17 | Success: Yes
+2025-05-04 02:50:34,617 [INFO] Test Episode 32/100 | Reward: 177.00 | Length: 23 | Success: Yes
+2025-05-04 02:50:34,677 [INFO] Test Episode 33/100 | Reward: 170.00 | Length: 30 | Success: Yes
+2025-05-04 02:50:34,709 [INFO] Test Episode 34/100 | Reward: 184.00 | Length: 16 | Success: Yes
+2025-05-04 02:50:34,749 [INFO] Test Episode 35/100 | Reward: 180.00 | Length: 20 | Success: Yes
+2025-05-04 02:50:34,824 [INFO] Test Episode 36/100 | Reward: 163.00 | Length: 37 | Success: Yes
+2025-05-04 02:50:34,862 [INFO] Test Episode 37/100 | Reward: 181.00 | Length: 19 | Success: Yes
+2025-05-04 02:50:34,920 [INFO] Test Episode 38/100 | Reward: 171.00 | Length: 29 | Success: Yes
+2025-05-04 02:50:34,950 [INFO] Test Episode 39/100 | Reward: 185.00 | Length: 15 | Success: Yes
+2025-05-04 02:50:35,026 [INFO] Test Episode 40/100 | Reward: 162.00 | Length: 38 | Success: Yes
+2025-05-04 02:50:35,124 [INFO] Test Episode 41/100 | Reward: 152.00 | Length: 48 | Success: Yes
+2025-05-04 02:50:35,169 [INFO] Test Episode 42/100 | Reward: 179.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:35,229 [INFO] Test Episode 43/100 | Reward: 170.00 | Length: 30 | Success: Yes
+2025-05-04 02:50:35,275 [INFO] Test Episode 44/100 | Reward: 177.00 | Length: 23 | Success: Yes
+2025-05-04 02:50:35,357 [INFO] Test Episode 45/100 | Reward: 160.00 | Length: 40 | Success: Yes
+2025-05-04 02:50:35,409 [INFO] Test Episode 46/100 | Reward: 174.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:35,465 [INFO] Test Episode 47/100 | Reward: 172.00 | Length: 28 | Success: Yes
+2025-05-04 02:50:35,491 [INFO] Test Episode 48/100 | Reward: 187.00 | Length: 13 | Success: Yes
+2025-05-04 02:50:35,554 [INFO] Test Episode 49/100 | Reward: 169.00 | Length: 31 | Success: Yes
+2025-05-04 02:50:35,637 [INFO] Test Episode 50/100 | Reward: 160.00 | Length: 40 | Success: Yes
+2025-05-04 02:50:35,660 [INFO] Test Episode 51/100 | Reward: 189.00 | Length: 11 | Success: Yes
+2025-05-04 02:50:35,714 [INFO] Test Episode 52/100 | Reward: 173.00 | Length: 27 | Success: Yes
+2025-05-04 02:50:35,762 [INFO] Test Episode 53/100 | Reward: 176.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:35,860 [INFO] Test Episode 54/100 | Reward: 152.00 | Length: 48 | Success: Yes
+2025-05-04 02:50:35,911 [INFO] Test Episode 55/100 | Reward: 175.00 | Length: 25 | Success: Yes
+2025-05-04 02:50:35,969 [INFO] Test Episode 56/100 | Reward: 171.00 | Length: 29 | Success: Yes
+2025-05-04 02:50:36,051 [INFO] Test Episode 57/100 | Reward: 159.00 | Length: 41 | Success: Yes
+2025-05-04 02:50:36,092 [INFO] Test Episode 58/100 | Reward: 181.00 | Length: 19 | Success: Yes
+2025-05-04 02:50:36,120 [INFO] Test Episode 59/100 | Reward: 186.00 | Length: 14 | Success: Yes
+2025-05-04 02:50:36,238 [INFO] Test Episode 60/100 | Reward: 141.00 | Length: 59 | Success: Yes
+2025-05-04 02:50:36,281 [INFO] Test Episode 61/100 | Reward: 179.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:36,368 [INFO] Test Episode 62/100 | Reward: 158.00 | Length: 42 | Success: Yes
+2025-05-04 02:50:36,414 [INFO] Test Episode 63/100 | Reward: 178.00 | Length: 22 | Success: Yes
+2025-05-04 02:50:36,464 [INFO] Test Episode 64/100 | Reward: 176.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:36,515 [INFO] Test Episode 65/100 | Reward: 175.00 | Length: 25 | Success: Yes
+2025-05-04 02:50:36,550 [INFO] Test Episode 66/100 | Reward: 183.00 | Length: 17 | Success: Yes
+2025-05-04 02:50:36,601 [INFO] Test Episode 67/100 | Reward: 176.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:36,652 [INFO] Test Episode 68/100 | Reward: 175.00 | Length: 25 | Success: Yes
+2025-05-04 02:50:36,721 [INFO] Test Episode 69/100 | Reward: 166.00 | Length: 34 | Success: Yes
+2025-05-04 02:50:36,767 [INFO] Test Episode 70/100 | Reward: 177.00 | Length: 23 | Success: Yes
+2025-05-04 02:50:36,826 [INFO] Test Episode 71/100 | Reward: 172.00 | Length: 28 | Success: Yes
+2025-05-04 02:50:36,863 [INFO] Test Episode 72/100 | Reward: 182.00 | Length: 18 | Success: Yes
+2025-05-04 02:50:36,935 [INFO] Test Episode 73/100 | Reward: 164.00 | Length: 36 | Success: Yes
+2025-05-04 02:50:37,002 [INFO] Test Episode 74/100 | Reward: 167.00 | Length: 33 | Success: Yes
+2025-05-04 02:50:37,067 [INFO] Test Episode 75/100 | Reward: 169.00 | Length: 31 | Success: Yes
+2025-05-04 02:50:37,130 [INFO] Test Episode 76/100 | Reward: 169.00 | Length: 31 | Success: Yes
+2025-05-04 02:50:37,209 [INFO] Test Episode 77/100 | Reward: 161.00 | Length: 39 | Success: Yes
+2025-05-04 02:50:37,261 [INFO] Test Episode 78/100 | Reward: 174.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:37,322 [INFO] Test Episode 79/100 | Reward: 171.00 | Length: 29 | Success: Yes
+2025-05-04 02:50:37,400 [INFO] Test Episode 80/100 | Reward: 161.00 | Length: 39 | Success: Yes
+2025-05-04 02:50:37,427 [INFO] Test Episode 81/100 | Reward: 187.00 | Length: 13 | Success: Yes
+2025-05-04 02:50:37,588 [INFO] Test Episode 82/100 | Reward: 121.00 | Length: 79 | Success: Yes
+2025-05-04 02:50:37,634 [INFO] Test Episode 83/100 | Reward: 177.00 | Length: 23 | Success: Yes
+2025-05-04 02:50:37,681 [INFO] Test Episode 84/100 | Reward: 177.00 | Length: 23 | Success: Yes
+2025-05-04 02:50:37,742 [INFO] Test Episode 85/100 | Reward: 170.00 | Length: 30 | Success: Yes
+2025-05-04 02:50:37,770 [INFO] Test Episode 86/100 | Reward: 186.00 | Length: 14 | Success: Yes
+2025-05-04 02:50:37,830 [INFO] Test Episode 87/100 | Reward: 170.00 | Length: 30 | Success: Yes
+2025-05-04 02:50:37,887 [INFO] Test Episode 88/100 | Reward: 173.00 | Length: 27 | Success: Yes
+2025-05-04 02:50:37,928 [INFO] Test Episode 89/100 | Reward: 180.00 | Length: 20 | Success: Yes
+2025-05-04 02:50:37,985 [INFO] Test Episode 90/100 | Reward: 172.00 | Length: 28 | Success: Yes
+2025-05-04 02:50:38,032 [INFO] Test Episode 91/100 | Reward: 177.00 | Length: 23 | Success: Yes
+2025-05-04 02:50:38,090 [INFO] Test Episode 92/100 | Reward: 171.00 | Length: 29 | Success: Yes
+2025-05-04 02:50:38,141 [INFO] Test Episode 93/100 | Reward: 177.00 | Length: 23 | Success: Yes
+2025-05-04 02:50:38,224 [INFO] Test Episode 94/100 | Reward: 159.00 | Length: 41 | Success: Yes
+2025-05-04 02:50:38,272 [INFO] Test Episode 95/100 | Reward: 176.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:38,355 [INFO] Test Episode 96/100 | Reward: 159.00 | Length: 41 | Success: Yes
+2025-05-04 02:50:38,396 [INFO] Test Episode 97/100 | Reward: 181.00 | Length: 19 | Success: Yes
+2025-05-04 02:50:38,469 [INFO] Test Episode 98/100 | Reward: 164.00 | Length: 36 | Success: Yes
+2025-05-04 02:50:38,522 [INFO] Test Episode 99/100 | Reward: 174.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:38,577 [INFO] Test Episode 100/100 | Reward: 173.00 | Length: 27 | Success: Yes
+2025-05-04 02:50:38,577 [INFO] 
+Test Results Summary:
+2025-05-04 02:50:38,577 [INFO] Average Reward: 171.30
+2025-05-04 02:50:38,577 [INFO] Average Episode Length: 28.7
+2025-05-04 02:50:38,577 [INFO] Success Rate: 100.00% (100/100)
+2025-05-04 02:50:38,577 [INFO] Timeout Rate: 0.00% (0/100)
+2025-05-04 02:50:38,578 [INFO] Testing completed for tiny. Average reward over 100 episodes: 171.300
+2025-05-04 02:50:39,579 [INFO] 
+==================== Preparing Scenario: tiny-hard ====================
+2025-05-04 02:50:39,579 [INFO] Instantiating agent using dummy env...
+2025-05-04 02:50:39,620 [INFO] Model initialized with 720,275 trainable parameters
+2025-05-04 02:50:39,620 [INFO] Initial GPU memory: 19.1MB / 30000000.0MB
+2025-05-04 02:50:39,620 [INFO] Loading model for 'tiny-hard' from: scenario_checkpoints/tiny-hard/final_model.pt
+2025-05-04 02:50:39,620 [INFO] Using Device: cuda
+2025-05-04 02:50:39,620 [INFO] Loading checkpoint from: scenario_checkpoints/tiny-hard/final_model.pt
+2025-05-04 02:50:39,742 [INFO] Recreating networks with dims from checkpoint: obs=72, action=27, hidden=128, lstm_layers=5
+2025-05-04 02:50:39,763 [INFO] Loaded LSTM state from checkpoint (strict=False).
+2025-05-04 02:50:39,764 [INFO] Loaded A2C state from checkpoint (strict=False).
+2025-05-04 02:50:39,764 [INFO] Created new optimizer with learning rate: 0.0002. Optimizer state not transferred due to dimension change.
+2025-05-04 02:50:39,764 [INFO] Loaded scheduler state.
+2025-05-04 02:50:39,764 [INFO] Agent loaded successfully from scenario_checkpoints/tiny-hard/final_model.pt
+2025-05-04 02:50:39,764 [INFO] Model for 'tiny-hard' loaded successfully.
+2025-05-04 02:50:39,764 [INFO] 
+--- Testing Scenario: tiny-hard ---
+2025-05-04 02:50:39,767 [INFO] 
+Testing agent on tiny-hard for 100 episodes
+2025-05-04 02:50:39,767 [INFO] Using deterministic actions: False
+2025-05-04 02:50:39,816 [INFO] Test Episode 1/100 | Reward: 175.00 | Length: 18 | Success: Yes
+2025-05-04 02:50:39,845 [INFO] Test Episode 2/100 | Reward: 182.00 | Length: 12 | Success: Yes
+2025-05-04 02:50:39,875 [INFO] Test Episode 3/100 | Reward: 178.00 | Length: 15 | Success: Yes
+2025-05-04 02:50:39,893 [INFO] Test Episode 4/100 | Reward: 186.00 | Length: 9 | Success: Yes
+2025-05-04 02:50:39,919 [INFO] Test Episode 5/100 | Reward: 184.00 | Length: 13 | Success: Yes
+2025-05-04 02:50:40,003 [INFO] Test Episode 6/100 | Reward: 170.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:40,149 [INFO] Test Episode 7/100 | Reward: 177.00 | Length: 17 | Success: Yes
+2025-05-04 02:50:40,287 [INFO] Test Episode 8/100 | Reward: 181.00 | Length: 16 | Success: Yes
+2025-05-04 02:50:40,373 [INFO] Test Episode 9/100 | Reward: 144.00 | Length: 34 | Success: Yes
+2025-05-04 02:50:40,470 [INFO] Test Episode 10/100 | Reward: 140.00 | Length: 47 | Success: Yes
+2025-05-04 02:50:40,522 [INFO] Test Episode 11/100 | Reward: 167.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:40,630 [INFO] Test Episode 12/100 | Reward: 172.00 | Length: 20 | Success: Yes
+2025-05-04 02:50:40,784 [INFO] Test Episode 13/100 | Reward: 169.00 | Length: 20 | Success: Yes
+2025-05-04 02:50:40,822 [INFO] Test Episode 14/100 | Reward: 176.00 | Length: 19 | Success: Yes
+2025-05-04 02:50:40,877 [INFO] Test Episode 15/100 | Reward: 172.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:40,967 [INFO] Test Episode 16/100 | Reward: 134.00 | Length: 45 | Success: Yes
+2025-05-04 02:50:41,015 [INFO] Test Episode 17/100 | Reward: 169.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:41,054 [INFO] Test Episode 18/100 | Reward: 177.00 | Length: 19 | Success: Yes
+2025-05-04 02:50:41,117 [INFO] Test Episode 19/100 | Reward: 166.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:41,161 [INFO] Test Episode 20/100 | Reward: 175.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:41,213 [INFO] Test Episode 21/100 | Reward: 163.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:41,236 [INFO] Test Episode 22/100 | Reward: 184.00 | Length: 11 | Success: Yes
+2025-05-04 02:50:41,290 [INFO] Test Episode 23/100 | Reward: 162.00 | Length: 27 | Success: Yes
+2025-05-04 02:50:41,332 [INFO] Test Episode 24/100 | Reward: 175.00 | Length: 19 | Success: Yes
+2025-05-04 02:50:41,376 [INFO] Test Episode 25/100 | Reward: 182.00 | Length: 14 | Success: Yes
+2025-05-04 02:50:41,437 [INFO] Test Episode 26/100 | Reward: 163.00 | Length: 30 | Success: Yes
+2025-05-04 02:50:41,471 [INFO] Test Episode 27/100 | Reward: 178.00 | Length: 17 | Success: Yes
+2025-05-04 02:50:41,504 [INFO] Test Episode 28/100 | Reward: 178.00 | Length: 16 | Success: Yes
+2025-05-04 02:50:41,615 [INFO] Test Episode 29/100 | Reward: 148.00 | Length: 45 | Success: Yes
+2025-05-04 02:50:41,665 [INFO] Test Episode 30/100 | Reward: 161.00 | Length: 25 | Success: Yes
+2025-05-04 02:50:41,694 [INFO] Test Episode 31/100 | Reward: 177.00 | Length: 14 | Success: Yes
+2025-05-04 02:50:41,722 [INFO] Test Episode 32/100 | Reward: 182.00 | Length: 14 | Success: Yes
+2025-05-04 02:50:41,776 [INFO] Test Episode 33/100 | Reward: 161.00 | Length: 27 | Success: Yes
+2025-05-04 02:50:41,851 [INFO] Test Episode 34/100 | Reward: 159.00 | Length: 31 | Success: Yes
+2025-05-04 02:50:41,923 [INFO] Test Episode 35/100 | Reward: 156.00 | Length: 32 | Success: Yes
+2025-05-04 02:50:41,974 [INFO] Test Episode 36/100 | Reward: 162.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:42,010 [INFO] Test Episode 37/100 | Reward: 172.00 | Length: 18 | Success: Yes
+2025-05-04 02:50:42,044 [INFO] Test Episode 38/100 | Reward: 177.00 | Length: 17 | Success: Yes
+2025-05-04 02:50:42,081 [INFO] Test Episode 39/100 | Reward: 181.00 | Length: 12 | Success: Yes
+2025-05-04 02:50:42,120 [INFO] Test Episode 40/100 | Reward: 175.00 | Length: 15 | Success: Yes
+2025-05-04 02:50:42,207 [INFO] Test Episode 41/100 | Reward: 129.00 | Length: 44 | Success: Yes
+2025-05-04 02:50:42,257 [INFO] Test Episode 42/100 | Reward: 168.00 | Length: 25 | Success: Yes
+2025-05-04 02:50:42,335 [INFO] Test Episode 43/100 | Reward: 164.00 | Length: 31 | Success: Yes
+2025-05-04 02:50:42,400 [INFO] Test Episode 44/100 | Reward: 153.00 | Length: 32 | Success: Yes
+2025-05-04 02:50:42,468 [INFO] Test Episode 45/100 | Reward: 156.00 | Length: 34 | Success: Yes
+2025-05-04 02:50:42,500 [INFO] Test Episode 46/100 | Reward: 179.00 | Length: 16 | Success: Yes
+2025-05-04 02:50:42,753 [INFO] Test Episode 47/100 | Reward: 128.00 | Length: 51 | Success: Yes
+2025-05-04 02:50:42,834 [INFO] Test Episode 48/100 | Reward: 180.00 | Length: 15 | Success: Yes
+2025-05-04 02:50:42,932 [INFO] Test Episode 49/100 | Reward: 148.00 | Length: 46 | Success: Yes
+2025-05-04 02:50:43,069 [INFO] Test Episode 50/100 | Reward: 178.00 | Length: 16 | Success: Yes
+2025-05-04 02:50:43,179 [INFO] Test Episode 51/100 | Reward: 171.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:43,246 [INFO] Test Episode 52/100 | Reward: 161.00 | Length: 32 | Success: Yes
+2025-05-04 02:50:43,314 [INFO] Test Episode 53/100 | Reward: 154.00 | Length: 33 | Success: Yes
+2025-05-04 02:50:43,356 [INFO] Test Episode 54/100 | Reward: 175.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:43,424 [INFO] Test Episode 55/100 | Reward: 159.00 | Length: 34 | Success: Yes
+2025-05-04 02:50:43,456 [INFO] Test Episode 56/100 | Reward: 175.00 | Length: 16 | Success: Yes
+2025-05-04 02:50:43,515 [INFO] Test Episode 57/100 | Reward: 165.00 | Length: 29 | Success: Yes
+2025-05-04 02:50:43,583 [INFO] Test Episode 58/100 | Reward: 158.00 | Length: 34 | Success: Yes
+2025-05-04 02:50:43,639 [INFO] Test Episode 59/100 | Reward: 157.00 | Length: 28 | Success: Yes
+2025-05-04 02:50:43,723 [INFO] Test Episode 60/100 | Reward: 144.00 | Length: 41 | Success: Yes
+2025-05-04 02:50:43,807 [INFO] Test Episode 61/100 | Reward: 137.00 | Length: 42 | Success: Yes
+2025-05-04 02:50:43,867 [INFO] Test Episode 62/100 | Reward: 166.00 | Length: 29 | Success: Yes
+2025-05-04 02:50:43,916 [INFO] Test Episode 63/100 | Reward: 164.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:43,944 [INFO] Test Episode 64/100 | Reward: 180.00 | Length: 14 | Success: Yes
+2025-05-04 02:50:43,978 [INFO] Test Episode 65/100 | Reward: 178.00 | Length: 17 | Success: Yes
+2025-05-04 02:50:44,020 [INFO] Test Episode 66/100 | Reward: 173.00 | Length: 20 | Success: Yes
+2025-05-04 02:50:44,050 [INFO] Test Episode 67/100 | Reward: 174.00 | Length: 15 | Success: Yes
+2025-05-04 02:50:44,138 [INFO] Test Episode 68/100 | Reward: 146.00 | Length: 43 | Success: Yes
+2025-05-04 02:50:44,190 [INFO] Test Episode 69/100 | Reward: 162.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:44,229 [INFO] Test Episode 70/100 | Reward: 176.00 | Length: 19 | Success: Yes
+2025-05-04 02:50:44,339 [INFO] Test Episode 71/100 | Reward: 178.00 | Length: 17 | Success: Yes
+2025-05-04 02:50:44,498 [INFO] Test Episode 72/100 | Reward: 168.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:44,528 [INFO] Test Episode 73/100 | Reward: 177.00 | Length: 15 | Success: Yes
+2025-05-04 02:50:44,575 [INFO] Test Episode 74/100 | Reward: 168.00 | Length: 23 | Success: Yes
+2025-05-04 02:50:44,626 [INFO] Test Episode 75/100 | Reward: 165.00 | Length: 26 | Success: Yes
+2025-05-04 02:50:44,664 [INFO] Test Episode 76/100 | Reward: 174.00 | Length: 19 | Success: Yes
+2025-05-04 02:50:44,732 [INFO] Test Episode 77/100 | Reward: 166.00 | Length: 27 | Success: Yes
+2025-05-04 02:50:44,798 [INFO] Test Episode 78/100 | Reward: 154.00 | Length: 29 | Success: Yes
+2025-05-04 02:50:44,848 [INFO] Test Episode 79/100 | Reward: 165.00 | Length: 25 | Success: Yes
+2025-05-04 02:50:44,890 [INFO] Test Episode 80/100 | Reward: 166.00 | Length: 21 | Success: Yes
+2025-05-04 02:50:44,973 [INFO] Test Episode 81/100 | Reward: 159.00 | Length: 31 | Success: Yes
+2025-05-04 02:50:45,058 [INFO] Test Episode 82/100 | Reward: 144.00 | Length: 43 | Success: Yes
+2025-05-04 02:50:45,118 [INFO] Test Episode 83/100 | Reward: 158.00 | Length: 30 | Success: Yes
+2025-05-04 02:50:45,180 [INFO] Test Episode 84/100 | Reward: 159.00 | Length: 31 | Success: Yes
+2025-05-04 02:50:45,238 [INFO] Test Episode 85/100 | Reward: 168.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:45,286 [INFO] Test Episode 86/100 | Reward: 171.00 | Length: 24 | Success: Yes
+2025-05-04 02:50:45,357 [INFO] Test Episode 87/100 | Reward: 154.00 | Length: 36 | Success: Yes
+2025-05-04 02:50:45,393 [INFO] Test Episode 88/100 | Reward: 179.00 | Length: 15 | Success: Yes
+2025-05-04 02:50:45,428 [INFO] Test Episode 89/100 | Reward: 182.00 | Length: 13 | Success: Yes
+2025-05-04 02:50:45,467 [INFO] Test Episode 90/100 | Reward: 171.00 | Length: 19 | Success: Yes
+2025-05-04 02:50:45,525 [INFO] Test Episode 91/100 | Reward: 158.00 | Length: 29 | Success: Yes
+2025-05-04 02:50:45,555 [INFO] Test Episode 92/100 | Reward: 180.00 | Length: 15 | Success: Yes
+2025-05-04 02:50:45,595 [INFO] Test Episode 93/100 | Reward: 169.00 | Length: 20 | Success: Yes
+2025-05-04 02:50:45,655 [INFO] Test Episode 94/100 | Reward: 164.00 | Length: 18 | Success: Yes
+2025-05-04 02:50:45,688 [INFO] Test Episode 95/100 | Reward: 178.00 | Length: 16 | Success: Yes
+2025-05-04 02:50:45,791 [INFO] Test Episode 96/100 | Reward: 136.00 | Length: 51 | Success: Yes
+2025-05-04 02:50:45,853 [INFO] Test Episode 97/100 | Reward: 160.00 | Length: 31 | Success: Yes
+2025-05-04 02:50:45,895 [INFO] Test Episode 98/100 | Reward: 176.00 | Length: 15 | Success: Yes
+2025-05-04 02:50:45,935 [INFO] Test Episode 99/100 | Reward: 176.00 | Length: 20 | Success: Yes
+2025-05-04 02:50:45,963 [INFO] Test Episode 100/100 | Reward: 182.00 | Length: 13 | Success: Yes
+2025-05-04 02:50:45,963 [INFO] 
+Test Results Summary:
+2025-05-04 02:50:45,963 [INFO] Average Reward: 166.53
+2025-05-04 02:50:45,963 [INFO] Average Episode Length: 24.4
+2025-05-04 02:50:45,963 [INFO] Success Rate: 100.00% (100/100)
+2025-05-04 02:50:45,963 [INFO] Timeout Rate: 0.00% (0/100)
+2025-05-04 02:50:45,963 [INFO] Testing completed for tiny-hard. Average reward over 100 episodes: 166.530
+2025-05-04 02:50:46,964 [INFO] 
+==================== Preparing Scenario: tiny-small ====================
+2025-05-04 02:50:46,964 [INFO] Instantiating agent using dummy env...
+2025-05-04 02:50:46,975 [INFO] Model initialized with 720,275 trainable parameters
+2025-05-04 02:50:46,975 [INFO] Initial GPU memory: 16.4MB / 30000000.0MB
+2025-05-04 02:50:46,975 [INFO] Loading model for 'tiny-small' from: scenario_checkpoints/tiny-small/final_model.pt
+2025-05-04 02:50:46,975 [INFO] Using Device: cuda
+2025-05-04 02:50:46,975 [INFO] Loading checkpoint from: scenario_checkpoints/tiny-small/final_model.pt
+2025-05-04 02:50:46,982 [INFO] Recreating networks with dims from checkpoint: obs=120, action=45, hidden=128, lstm_layers=5
+2025-05-04 02:50:46,989 [INFO] Loaded LSTM state from checkpoint (strict=False).
+2025-05-04 02:50:46,990 [INFO] Loaded A2C state from checkpoint (strict=False).
+2025-05-04 02:50:46,990 [INFO] Created new optimizer with learning rate: 0.0001. Optimizer state not transferred due to dimension change.
+2025-05-04 02:50:46,990 [INFO] Loaded scheduler state.
+2025-05-04 02:50:46,990 [INFO] Agent loaded successfully from scenario_checkpoints/tiny-small/final_model.pt
+2025-05-04 02:50:46,990 [INFO] Model for 'tiny-small' loaded successfully.
+2025-05-04 02:50:46,990 [INFO] 
+--- Testing Scenario: tiny-small ---
+2025-05-04 02:50:46,994 [INFO] 
+Testing agent on tiny-small for 100 episodes
+2025-05-04 02:50:46,994 [INFO] Using deterministic actions: False
+2025-05-04 02:50:47,287 [INFO] Test Episode 1/100 | Reward: 43.00 | Length: 123 | Success: Yes
+2025-05-04 02:50:47,692 [INFO] Test Episode 2/100 | Reward: -47.00 | Length: 201 | Success: Yes
+2025-05-04 02:50:47,800 [INFO] Test Episode 3/100 | Reward: 136.00 | Length: 54 | Success: Yes
+2025-05-04 02:50:47,970 [INFO] Test Episode 4/100 | Reward: 92.00 | Length: 82 | Success: Yes
+2025-05-04 02:50:48,317 [INFO] Test Episode 5/100 | Reward: -16.00 | Length: 170 | Success: Yes
+2025-05-04 02:50:48,418 [INFO] Test Episode 6/100 | Reward: 131.00 | Length: 50 | Success: Yes
+2025-05-04 02:50:48,879 [INFO] Test Episode 7/100 | Reward: -63.00 | Length: 225 | Success: Yes
+2025-05-04 02:50:49,230 [INFO] Test Episode 8/100 | Reward: -10.00 | Length: 174 | Success: Yes
+2025-05-04 02:50:49,555 [INFO] Test Episode 9/100 | Reward: 69.00 | Length: 103 | Success: Yes
+2025-05-04 02:50:49,812 [INFO] Test Episode 10/100 | Reward: 48.00 | Length: 114 | Success: Yes
+2025-05-04 02:50:50,156 [INFO] Test Episode 11/100 | Reward: -11.00 | Length: 173 | Success: Yes
+2025-05-04 02:50:50,469 [INFO] Test Episode 12/100 | Reward: 5.00 | Length: 158 | Success: Yes
+2025-05-04 02:50:50,879 [INFO] Test Episode 13/100 | Reward: -56.00 | Length: 206 | Success: Yes
+2025-05-04 02:50:51,064 [INFO] Test Episode 14/100 | Reward: 87.00 | Length: 93 | Success: Yes
+2025-05-04 02:50:51,228 [INFO] Test Episode 15/100 | Reward: 100.00 | Length: 79 | Success: Yes
+2025-05-04 02:50:51,613 [INFO] Test Episode 16/100 | Reward: -41.00 | Length: 191 | Success: Yes
+2025-05-04 02:50:51,927 [INFO] Test Episode 17/100 | Reward: 1.00 | Length: 155 | Success: Yes
+2025-05-04 02:50:52,792 [INFO] Test Episode 18/100 | Reward: -356.00 | Length: 434 | Success: Yes
+2025-05-04 02:50:53,116 [INFO] Test Episode 19/100 | Reward: -7.00 | Length: 161 | Success: Yes
+2025-05-04 02:50:53,428 [INFO] Test Episode 20/100 | Reward: 1.00 | Length: 153 | Success: Yes
+2025-05-04 02:50:53,737 [INFO] Test Episode 21/100 | Reward: 3.00 | Length: 152 | Success: Yes
+2025-05-04 02:50:53,929 [INFO] Test Episode 22/100 | Reward: 77.00 | Length: 96 | Success: Yes
+2025-05-04 02:50:54,272 [INFO] Test Episode 23/100 | Reward: -24.00 | Length: 166 | Success: Yes
+2025-05-04 02:50:54,566 [INFO] Test Episode 24/100 | Reward: 14.00 | Length: 146 | Success: Yes
+2025-05-04 02:50:54,749 [INFO] Test Episode 25/100 | Reward: 89.00 | Length: 91 | Success: Yes
+2025-05-04 02:50:54,929 [INFO] Test Episode 26/100 | Reward: 81.00 | Length: 86 | Success: Yes
+2025-05-04 02:50:55,206 [INFO] Test Episode 27/100 | Reward: 31.00 | Length: 137 | Success: Yes
+2025-05-04 02:50:55,386 [INFO] Test Episode 28/100 | Reward: 92.00 | Length: 90 | Success: Yes
+2025-05-04 02:50:55,694 [INFO] Test Episode 29/100 | Reward: 14.00 | Length: 149 | Success: Yes
+2025-05-04 02:50:56,240 [INFO] Test Episode 30/100 | Reward: -150.00 | Length: 271 | Success: Yes
+2025-05-04 02:50:56,465 [INFO] Test Episode 31/100 | Reward: 54.00 | Length: 111 | Success: Yes
+2025-05-04 02:50:56,822 [INFO] Test Episode 32/100 | Reward: -12.00 | Length: 175 | Success: Yes
+2025-05-04 02:50:56,920 [INFO] Test Episode 33/100 | Reward: 138.00 | Length: 48 | Success: Yes
+2025-05-04 02:50:57,082 [INFO] Test Episode 34/100 | Reward: 102.00 | Length: 77 | Success: Yes
+2025-05-04 02:50:57,184 [INFO] Test Episode 35/100 | Reward: 134.00 | Length: 50 | Success: Yes
+2025-05-04 02:50:57,324 [INFO] Test Episode 36/100 | Reward: 116.00 | Length: 66 | Success: Yes
+2025-05-04 02:50:57,492 [INFO] Test Episode 37/100 | Reward: 84.00 | Length: 84 | Success: Yes
+2025-05-04 02:50:58,222 [INFO] Test Episode 38/100 | Reward: -283.00 | Length: 361 | Success: Yes
+2025-05-04 02:50:58,346 [INFO] Test Episode 39/100 | Reward: 114.00 | Length: 62 | Success: Yes
+2025-05-04 02:50:58,561 [INFO] Test Episode 40/100 | Reward: 73.00 | Length: 103 | Success: Yes
+2025-05-04 02:50:58,713 [INFO] Test Episode 41/100 | Reward: 106.00 | Length: 75 | Success: Yes
+2025-05-04 02:50:58,918 [INFO] Test Episode 42/100 | Reward: 83.00 | Length: 98 | Success: Yes
+2025-05-04 02:50:59,241 [INFO] Test Episode 43/100 | Reward: 1.00 | Length: 158 | Success: Yes
+2025-05-04 02:50:59,390 [INFO] Test Episode 44/100 | Reward: 103.00 | Length: 75 | Success: Yes
+2025-05-04 02:50:59,517 [INFO] Test Episode 45/100 | Reward: 123.00 | Length: 60 | Success: Yes
+2025-05-04 02:50:59,686 [INFO] Test Episode 46/100 | Reward: 86.00 | Length: 84 | Success: Yes
+2025-05-04 02:51:00,045 [INFO] Test Episode 47/100 | Reward: -34.00 | Length: 173 | Success: Yes
+2025-05-04 02:51:00,251 [INFO] Test Episode 48/100 | Reward: 74.00 | Length: 103 | Success: Yes
+2025-05-04 02:51:00,407 [INFO] Test Episode 49/100 | Reward: 107.00 | Length: 77 | Success: Yes
+2025-05-04 02:51:00,695 [INFO] Test Episode 50/100 | Reward: 18.00 | Length: 139 | Success: Yes
+2025-05-04 02:51:00,982 [INFO] Test Episode 51/100 | Reward: 12.00 | Length: 142 | Success: Yes
+2025-05-04 02:51:01,183 [INFO] Test Episode 52/100 | Reward: 71.00 | Length: 98 | Success: Yes
+2025-05-04 02:51:01,465 [INFO] Test Episode 53/100 | Reward: 25.00 | Length: 132 | Success: Yes
+2025-05-04 02:51:02,033 [INFO] Test Episode 54/100 | Reward: -163.00 | Length: 280 | Success: Yes
+2025-05-04 02:51:02,530 [INFO] Test Episode 55/100 | Reward: -116.00 | Length: 249 | Success: Yes
+2025-05-04 02:51:02,838 [INFO] Test Episode 56/100 | Reward: 6.00 | Length: 153 | Success: Yes
+2025-05-04 02:51:03,077 [INFO] Test Episode 57/100 | Reward: 57.00 | Length: 116 | Success: Yes
+2025-05-04 02:51:03,416 [INFO] Test Episode 58/100 | Reward: -21.00 | Length: 167 | Success: Yes
+2025-05-04 02:51:03,926 [INFO] Test Episode 59/100 | Reward: -116.00 | Length: 250 | Success: Yes
+2025-05-04 02:51:04,142 [INFO] Test Episode 60/100 | Reward: 51.00 | Length: 106 | Success: Yes
+2025-05-04 02:51:04,554 [INFO] Test Episode 61/100 | Reward: -56.00 | Length: 206 | Success: Yes
+2025-05-04 02:51:04,845 [INFO] Test Episode 62/100 | Reward: 28.00 | Length: 145 | Success: Yes
+2025-05-04 02:51:05,072 [INFO] Test Episode 63/100 | Reward: 57.00 | Length: 113 | Success: Yes
+2025-05-04 02:51:05,168 [INFO] Test Episode 64/100 | Reward: 141.00 | Length: 48 | Success: Yes
+2025-05-04 02:51:05,392 [INFO] Test Episode 65/100 | Reward: 67.00 | Length: 108 | Success: Yes
+2025-05-04 02:51:05,703 [INFO] Test Episode 66/100 | Reward: -1.00 | Length: 155 | Success: Yes
+2025-05-04 02:51:05,923 [INFO] Test Episode 67/100 | Reward: 68.00 | Length: 106 | Success: Yes
+2025-05-04 02:51:06,229 [INFO] Test Episode 68/100 | Reward: 12.00 | Length: 150 | Success: Yes
+2025-05-04 02:51:06,290 [INFO] Test Episode 69/100 | Reward: 165.00 | Length: 30 | Success: Yes
+2025-05-04 02:51:06,412 [INFO] Test Episode 70/100 | Reward: 127.00 | Length: 60 | Success: Yes
+2025-05-04 02:51:06,690 [INFO] Test Episode 71/100 | Reward: 10.00 | Length: 132 | Success: Yes
+2025-05-04 02:51:07,066 [INFO] Test Episode 72/100 | Reward: -33.00 | Length: 189 | Success: Yes
+2025-05-04 02:51:07,280 [INFO] Test Episode 73/100 | Reward: 68.00 | Length: 107 | Success: Yes
+2025-05-04 02:51:07,482 [INFO] Test Episode 74/100 | Reward: 68.00 | Length: 102 | Success: Yes
+2025-05-04 02:51:07,676 [INFO] Test Episode 75/100 | Reward: 79.00 | Length: 97 | Success: Yes
+2025-05-04 02:51:08,037 [INFO] Test Episode 76/100 | Reward: -22.00 | Length: 178 | Success: Yes
+2025-05-04 02:51:08,375 [INFO] Test Episode 77/100 | Reward: -14.00 | Length: 168 | Success: Yes
+2025-05-04 02:51:08,654 [INFO] Test Episode 78/100 | Reward: 21.00 | Length: 138 | Success: Yes
+2025-05-04 02:51:08,948 [INFO] Test Episode 79/100 | Reward: 16.00 | Length: 145 | Success: Yes
+2025-05-04 02:51:09,177 [INFO] Test Episode 80/100 | Reward: 60.00 | Length: 113 | Success: Yes
+2025-05-04 02:51:09,439 [INFO] Test Episode 81/100 | Reward: 40.00 | Length: 131 | Success: Yes
+2025-05-04 02:51:09,539 [INFO] Test Episode 82/100 | Reward: 138.00 | Length: 50 | Success: Yes
+2025-05-04 02:51:10,126 [INFO] Test Episode 83/100 | Reward: -157.00 | Length: 293 | Success: Yes
+2025-05-04 02:51:10,389 [INFO] Test Episode 84/100 | Reward: 35.00 | Length: 131 | Success: Yes
+2025-05-04 02:51:10,607 [INFO] Test Episode 85/100 | Reward: 67.00 | Length: 107 | Success: Yes
+2025-05-04 02:51:10,882 [INFO] Test Episode 86/100 | Reward: 28.00 | Length: 136 | Success: Yes
+2025-05-04 02:51:11,482 [INFO] Test Episode 87/100 | Reward: -181.00 | Length: 299 | Success: Yes
+2025-05-04 02:51:11,844 [INFO] Test Episode 88/100 | Reward: -24.00 | Length: 176 | Success: Yes
+2025-05-04 02:51:12,213 [INFO] Test Episode 89/100 | Reward: -23.00 | Length: 183 | Success: Yes
+2025-05-04 02:51:12,304 [INFO] Test Episode 90/100 | Reward: 136.00 | Length: 45 | Success: Yes
+2025-05-04 02:51:12,663 [INFO] Test Episode 91/100 | Reward: -12.00 | Length: 174 | Success: Yes
+2025-05-04 02:51:12,990 [INFO] Test Episode 92/100 | Reward: -15.00 | Length: 162 | Success: Yes
+2025-05-04 02:51:13,219 [INFO] Test Episode 93/100 | Reward: 52.00 | Length: 112 | Success: Yes
+2025-05-04 02:51:13,435 [INFO] Test Episode 94/100 | Reward: 66.00 | Length: 106 | Success: Yes
+2025-05-04 02:51:13,568 [INFO] Test Episode 95/100 | Reward: 117.00 | Length: 65 | Success: Yes
+2025-05-04 02:51:13,755 [INFO] Test Episode 96/100 | Reward: 94.00 | Length: 89 | Success: Yes
+2025-05-04 02:51:13,965 [INFO] Test Episode 97/100 | Reward: 67.00 | Length: 101 | Success: Yes
+2025-05-04 02:51:14,097 [INFO] Test Episode 98/100 | Reward: 121.00 | Length: 63 | Success: Yes
+2025-05-04 02:51:14,564 [INFO] Test Episode 99/100 | Reward: -97.00 | Length: 225 | Success: Yes
+2025-05-04 02:51:14,913 [INFO] Test Episode 100/100 | Reward: -27.00 | Length: 172 | Success: Yes
+2025-05-04 02:51:14,913 [INFO] 
+Test Results Summary:
+2025-05-04 02:51:14,913 [INFO] Average Reward: 26.12
+2025-05-04 02:51:14,913 [INFO] Average Episode Length: 136.7
+2025-05-04 02:51:14,913 [INFO] Success Rate: 100.00% (100/100)
+2025-05-04 02:51:14,913 [INFO] Timeout Rate: 0.00% (0/100)
+2025-05-04 02:51:14,913 [INFO] Testing completed for tiny-small. Average reward over 100 episodes: 26.120
+2025-05-04 02:51:15,914 [INFO] 
+==================== Preparing Scenario: small ====================
+2025-05-04 02:51:15,914 [INFO] Instantiating agent using dummy env...
+2025-05-04 02:51:15,928 [INFO] Model initialized with 720,275 trainable parameters
+2025-05-04 02:51:15,928 [INFO] Initial GPU memory: 16.4MB / 50000000.0MB
+2025-05-04 02:51:15,929 [INFO] Loading model for 'small' from: scenario_checkpoints/small/final_model.pt
+2025-05-04 02:51:15,929 [INFO] Using Device: cuda
+2025-05-04 02:51:15,929 [INFO] Loading checkpoint from: scenario_checkpoints/small/final_model.pt
+2025-05-04 02:51:15,936 [INFO] Recreating networks with dims from checkpoint: obs=207, action=72, hidden=128, lstm_layers=5
+2025-05-04 02:51:15,945 [INFO] Loaded LSTM state from checkpoint (strict=False).
+2025-05-04 02:51:15,945 [INFO] Loaded A2C state from checkpoint (strict=False).
+2025-05-04 02:51:15,945 [INFO] Created new optimizer with learning rate: 0.0001. Optimizer state not transferred due to dimension change.
+2025-05-04 02:51:15,945 [INFO] Loaded scheduler state.
+2025-05-04 02:51:15,945 [INFO] Agent loaded successfully from scenario_checkpoints/small/final_model.pt
+2025-05-04 02:51:15,945 [INFO] Model for 'small' loaded successfully.
+2025-05-04 02:51:15,945 [INFO] 
+--- Testing Scenario: small ---
+2025-05-04 02:51:15,950 [INFO] 
+Testing agent on small for 100 episodes
+2025-05-04 02:51:15,950 [INFO] Using deterministic actions: False
+2025-05-04 02:51:17,057 [INFO] Test Episode 1/100 | Reward: -421.00 | Length: 531 | Success: Yes
+2025-05-04 02:51:17,686 [INFO] Test Episode 2/100 | Reward: -186.00 | Length: 318 | Success: Yes
+2025-05-04 02:51:19,443 [INFO] Test Episode 3/100 | Reward: -851.00 | Length: 876 | Success: Yes
+2025-05-04 02:51:19,861 [INFO] Test Episode 4/100 | Reward: -38.00 | Length: 207 | Success: Yes
+2025-05-04 02:51:20,472 [INFO] Test Episode 5/100 | Reward: -177.00 | Length: 307 | Success: Yes
+2025-05-04 02:51:21,034 [INFO] Test Episode 6/100 | Reward: -137.00 | Length: 281 | Success: Yes
+2025-05-04 02:51:21,679 [INFO] Test Episode 7/100 | Reward: -173.00 | Length: 322 | Success: Yes
+2025-05-04 02:51:22,929 [INFO] Test Episode 8/100 | Reward: -548.00 | Length: 632 | Success: Yes
+2025-05-04 02:51:23,787 [INFO] Test Episode 9/100 | Reward: -293.00 | Length: 430 | Success: Yes
+2025-05-04 02:51:24,251 [INFO] Test Episode 10/100 | Reward: -75.00 | Length: 232 | Success: Yes
+2025-05-04 02:51:24,658 [INFO] Test Episode 11/100 | Reward: -49.00 | Length: 204 | Success: Yes
+2025-05-04 02:51:24,974 [INFO] Test Episode 12/100 | Reward: 2.00 | Length: 159 | Success: Yes
+2025-05-04 02:51:25,476 [INFO] Test Episode 13/100 | Reward: -96.00 | Length: 253 | Success: Yes
+2025-05-04 02:51:26,013 [INFO] Test Episode 14/100 | Reward: -112.00 | Length: 268 | Success: Yes
+2025-05-04 02:51:26,811 [INFO] Test Episode 15/100 | Reward: -267.00 | Length: 401 | Success: Yes
+2025-05-04 02:51:27,542 [INFO] Test Episode 16/100 | Reward: -249.00 | Length: 370 | Success: Yes
+2025-05-04 02:51:28,290 [INFO] Test Episode 17/100 | Reward: -225.00 | Length: 372 | Success: Yes
+2025-05-04 02:51:29,072 [INFO] Test Episode 18/100 | Reward: -279.00 | Length: 386 | Success: Yes
+2025-05-04 02:51:29,368 [INFO] Test Episode 19/100 | Reward: 32.00 | Length: 146 | Success: Yes
+2025-05-04 02:51:30,387 [INFO] Test Episode 20/100 | Reward: -407.00 | Length: 511 | Success: Yes
+2025-05-04 02:51:30,786 [INFO] Test Episode 21/100 | Reward: -45.00 | Length: 196 | Success: Yes
+2025-05-04 02:51:31,823 [INFO] Test Episode 22/100 | Reward: -192.00 | Length: 331 | Success: Yes
+2025-05-04 02:51:32,321 [INFO] Test Episode 23/100 | Reward: -89.00 | Length: 247 | Success: Yes
+2025-05-04 02:51:32,856 [INFO] Test Episode 24/100 | Reward: -121.00 | Length: 272 | Success: Yes
+2025-05-04 02:51:33,543 [INFO] Test Episode 25/100 | Reward: -130.00 | Length: 264 | Success: Yes
+2025-05-04 02:51:33,950 [INFO] Test Episode 26/100 | Reward: 24.00 | Length: 150 | Success: Yes
+2025-05-04 02:51:34,361 [INFO] Test Episode 27/100 | Reward: -59.00 | Length: 208 | Success: Yes
+2025-05-04 02:51:34,954 [INFO] Test Episode 28/100 | Reward: -171.00 | Length: 302 | Success: Yes
+2025-05-04 02:51:35,841 [INFO] Test Episode 29/100 | Reward: -330.00 | Length: 450 | Success: Yes
+2025-05-04 02:51:36,934 [INFO] Test Episode 30/100 | Reward: -431.00 | Length: 549 | Success: Yes
+2025-05-04 02:51:37,507 [INFO] Test Episode 31/100 | Reward: -138.00 | Length: 288 | Success: Yes
+2025-05-04 02:51:38,443 [INFO] Test Episode 32/100 | Reward: -365.00 | Length: 472 | Success: Yes
+2025-05-04 02:51:38,814 [INFO] Test Episode 33/100 | Reward: -34.00 | Length: 186 | Success: Yes
+2025-05-04 02:51:39,572 [INFO] Test Episode 34/100 | Reward: -233.00 | Length: 380 | Success: Yes
+2025-05-04 02:51:40,065 [INFO] Test Episode 35/100 | Reward: -101.00 | Length: 247 | Success: Yes
+2025-05-04 02:51:42,052 [INFO] Test Episode 36/100 | Reward: -1156.00 | Length: 1000 | Success: No (Timeout)
+2025-05-04 02:51:42,590 [INFO] Test Episode 37/100 | Reward: -130.00 | Length: 270 | Success: Yes
+2025-05-04 02:51:42,939 [INFO] Test Episode 38/100 | Reward: -4.00 | Length: 175 | Success: Yes
+2025-05-04 02:51:43,721 [INFO] Test Episode 39/100 | Reward: -245.00 | Length: 391 | Success: Yes
+2025-05-04 02:51:44,318 [INFO] Test Episode 40/100 | Reward: -144.00 | Length: 299 | Success: Yes
+2025-05-04 02:51:44,684 [INFO] Test Episode 41/100 | Reward: -34.00 | Length: 184 | Success: Yes
+2025-05-04 02:51:45,287 [INFO] Test Episode 42/100 | Reward: -166.00 | Length: 304 | Success: Yes
+2025-05-04 02:51:45,744 [INFO] Test Episode 43/100 | Reward: -67.00 | Length: 229 | Success: Yes
+2025-05-04 02:51:46,525 [INFO] Test Episode 44/100 | Reward: -255.00 | Length: 390 | Success: Yes
+2025-05-04 02:51:47,193 [INFO] Test Episode 45/100 | Reward: -195.00 | Length: 336 | Success: Yes
+2025-05-04 02:51:48,271 [INFO] Test Episode 46/100 | Reward: -449.00 | Length: 543 | Success: Yes
+2025-05-04 02:51:49,562 [INFO] Test Episode 47/100 | Reward: -571.00 | Length: 648 | Success: Yes
+2025-05-04 02:51:50,051 [INFO] Test Episode 48/100 | Reward: -84.00 | Length: 246 | Success: Yes
+2025-05-04 02:51:50,425 [INFO] Test Episode 49/100 | Reward: -29.00 | Length: 187 | Success: Yes
+2025-05-04 02:51:50,857 [INFO] Test Episode 50/100 | Reward: -57.00 | Length: 217 | Success: Yes
+2025-05-04 02:51:51,799 [INFO] Test Episode 51/100 | Reward: -281.00 | Length: 407 | Success: Yes
+2025-05-04 02:51:52,942 [INFO] Test Episode 52/100 | Reward: -265.00 | Length: 398 | Success: Yes
+2025-05-04 02:51:53,631 [INFO] Test Episode 53/100 | Reward: -211.00 | Length: 349 | Success: Yes
+2025-05-04 02:51:54,122 [INFO] Test Episode 54/100 | Reward: -112.00 | Length: 248 | Success: Yes
+2025-05-04 02:51:54,511 [INFO] Test Episode 55/100 | Reward: -38.00 | Length: 195 | Success: Yes
+2025-05-04 02:51:55,771 [INFO] Test Episode 56/100 | Reward: -490.00 | Length: 596 | Success: Yes
+2025-05-04 02:51:56,385 [INFO] Test Episode 57/100 | Reward: -158.00 | Length: 301 | Success: Yes
+2025-05-04 02:51:57,122 [INFO] Test Episode 58/100 | Reward: -254.00 | Length: 370 | Success: Yes
+2025-05-04 02:51:57,862 [INFO] Test Episode 59/100 | Reward: -235.00 | Length: 372 | Success: Yes
+2025-05-04 02:51:58,137 [INFO] Test Episode 60/100 | Reward: 33.00 | Length: 136 | Success: Yes
+2025-05-04 02:51:58,644 [INFO] Test Episode 61/100 | Reward: -95.00 | Length: 253 | Success: Yes
+2025-05-04 02:51:59,318 [INFO] Test Episode 62/100 | Reward: -190.00 | Length: 338 | Success: Yes
+2025-05-04 02:51:59,914 [INFO] Test Episode 63/100 | Reward: -147.00 | Length: 296 | Success: Yes
+2025-05-04 02:52:00,674 [INFO] Test Episode 64/100 | Reward: -203.00 | Length: 333 | Success: Yes
+2025-05-04 02:52:01,447 [INFO] Test Episode 65/100 | Reward: -251.00 | Length: 383 | Success: Yes
+2025-05-04 02:52:01,997 [INFO] Test Episode 66/100 | Reward: -113.00 | Length: 266 | Success: Yes
+2025-05-04 02:52:02,262 [INFO] Test Episode 67/100 | Reward: 51.00 | Length: 119 | Success: Yes
+2025-05-04 02:52:02,594 [INFO] Test Episode 68/100 | Reward: 27.00 | Length: 146 | Success: Yes
+2025-05-04 02:52:03,446 [INFO] Test Episode 69/100 | Reward: -278.00 | Length: 408 | Success: Yes
+2025-05-04 02:52:04,017 [INFO] Test Episode 70/100 | Reward: -126.00 | Length: 279 | Success: Yes
+2025-05-04 02:52:04,618 [INFO] Test Episode 71/100 | Reward: -152.00 | Length: 295 | Success: Yes
+2025-05-04 02:52:05,501 [INFO] Test Episode 72/100 | Reward: -333.00 | Length: 447 | Success: Yes
+2025-05-04 02:52:06,041 [INFO] Test Episode 73/100 | Reward: -115.00 | Length: 269 | Success: Yes
+2025-05-04 02:52:06,379 [INFO] Test Episode 74/100 | Reward: 10.00 | Length: 155 | Success: Yes
+2025-05-04 02:52:07,441 [INFO] Test Episode 75/100 | Reward: -420.00 | Length: 538 | Success: Yes
+2025-05-04 02:52:08,401 [INFO] Test Episode 76/100 | Reward: -123.00 | Length: 266 | Success: Yes
+2025-05-04 02:52:09,478 [INFO] Test Episode 77/100 | Reward: -291.00 | Length: 416 | Success: Yes
+2025-05-04 02:52:10,149 [INFO] Test Episode 78/100 | Reward: -187.00 | Length: 338 | Success: Yes
+2025-05-04 02:52:10,844 [INFO] Test Episode 79/100 | Reward: -211.00 | Length: 348 | Success: Yes
+2025-05-04 02:52:11,264 [INFO] Test Episode 80/100 | Reward: -49.00 | Length: 208 | Success: Yes
+2025-05-04 02:52:11,604 [INFO] Test Episode 81/100 | Reward: 3.00 | Length: 167 | Success: Yes
+2025-05-04 02:52:11,973 [INFO] Test Episode 82/100 | Reward: -10.00 | Length: 182 | Success: Yes
+2025-05-04 02:52:12,708 [INFO] Test Episode 83/100 | Reward: -237.00 | Length: 366 | Success: Yes
+2025-05-04 02:52:13,535 [INFO] Test Episode 84/100 | Reward: -287.00 | Length: 408 | Success: Yes
+2025-05-04 02:52:14,831 [INFO] Test Episode 85/100 | Reward: -570.00 | Length: 646 | Success: Yes
+2025-05-04 02:52:14,950 [INFO] Test Episode 86/100 | Reward: 128.00 | Length: 59 | Success: Yes
+2025-05-04 02:52:15,339 [INFO] Test Episode 87/100 | Reward: -26.00 | Length: 191 | Success: Yes
+2025-05-04 02:52:15,578 [INFO] Test Episode 88/100 | Reward: 58.00 | Length: 116 | Success: Yes
+2025-05-04 02:52:16,398 [INFO] Test Episode 89/100 | Reward: -279.00 | Length: 405 | Success: Yes
+2025-05-04 02:52:17,232 [INFO] Test Episode 90/100 | Reward: -295.00 | Length: 413 | Success: Yes
+2025-05-04 02:52:17,649 [INFO] Test Episode 91/100 | Reward: -50.00 | Length: 209 | Success: Yes
+2025-05-04 02:52:18,266 [INFO] Test Episode 92/100 | Reward: -151.00 | Length: 303 | Success: Yes
+2025-05-04 02:52:18,853 [INFO] Test Episode 93/100 | Reward: -156.00 | Length: 286 | Success: Yes
+2025-05-04 02:52:19,245 [INFO] Test Episode 94/100 | Reward: -30.00 | Length: 195 | Success: Yes
+2025-05-04 02:52:19,905 [INFO] Test Episode 95/100 | Reward: -193.00 | Length: 331 | Success: Yes
+2025-05-04 02:52:20,218 [INFO] Test Episode 96/100 | Reward: 9.00 | Length: 156 | Success: Yes
+2025-05-04 02:52:21,860 [INFO] Test Episode 97/100 | Reward: -767.00 | Length: 818 | Success: Yes
+2025-05-04 02:52:22,466 [INFO] Test Episode 98/100 | Reward: -174.00 | Length: 304 | Success: Yes
+2025-05-04 02:52:22,983 [INFO] Test Episode 99/100 | Reward: -101.00 | Length: 259 | Success: Yes
+2025-05-04 02:52:23,280 [INFO] Test Episode 100/100 | Reward: 28.00 | Length: 147 | Success: Yes
+2025-05-04 02:52:23,280 [INFO] 
+Test Results Summary:
+2025-05-04 02:52:23,280 [INFO] Average Reward: -188.57
+2025-05-04 02:52:23,280 [INFO] Average Episode Length: 326.0
+2025-05-04 02:52:23,280 [INFO] Success Rate: 99.00% (99/100)
+2025-05-04 02:52:23,280 [INFO] Timeout Rate: 1.00% (1/100)
+2025-05-04 02:52:23,280 [INFO] Testing completed for small. Average reward over 100 episodes: -188.570
+2025-05-04 02:52:24,281 [INFO] 
+==================== Preparing Scenario: small-honeypot ====================
+2025-05-04 02:52:24,281 [INFO] Instantiating agent using dummy env...
+2025-05-04 02:52:24,291 [INFO] Model initialized with 720,275 trainable parameters
+2025-05-04 02:52:24,291 [INFO] Initial GPU memory: 16.5MB / 50000000.0MB
+2025-05-04 02:52:24,291 [INFO] Loading model for 'small-honeypot' from: scenario_checkpoints/small-honeypot/final_model.pt
+2025-05-04 02:52:24,291 [INFO] Using Device: cuda
+2025-05-04 02:52:24,291 [INFO] Loading checkpoint from: scenario_checkpoints/small-honeypot/final_model.pt
+2025-05-04 02:52:24,304 [INFO] Recreating networks with dims from checkpoint: obs=207, action=72, hidden=128, lstm_layers=5
+2025-05-04 02:52:24,311 [INFO] Loaded LSTM state from checkpoint (strict=False).
+2025-05-04 02:52:24,312 [INFO] Loaded A2C state from checkpoint (strict=False).
+2025-05-04 02:52:24,312 [INFO] Created new optimizer with learning rate: 0.0001. Optimizer state not transferred due to dimension change.
+2025-05-04 02:52:24,312 [INFO] Loaded scheduler state.
+2025-05-04 02:52:24,312 [INFO] Agent loaded successfully from scenario_checkpoints/small-honeypot/final_model.pt
+2025-05-04 02:52:24,312 [INFO] Model for 'small-honeypot' loaded successfully.
+2025-05-04 02:52:24,312 [INFO] 
+--- Testing Scenario: small-honeypot ---
+2025-05-04 02:52:24,316 [INFO] 
+Testing agent on small-honeypot for 100 episodes
+2025-05-04 02:52:24,316 [INFO] Using deterministic actions: False
+2025-05-04 02:52:24,684 [INFO] Test Episode 1/100 | Reward: -7.00 | Length: 160 | Success: Yes
+2025-05-04 02:52:25,060 [INFO] Test Episode 2/100 | Reward: -146.00 | Length: 188 | Success: Yes
+2025-05-04 02:52:25,255 [INFO] Test Episode 3/100 | Reward: 75.00 | Length: 99 | Success: Yes
+2025-05-04 02:52:25,553 [INFO] Test Episode 4/100 | Reward: 16.00 | Length: 146 | Success: Yes
+2025-05-04 02:52:25,702 [INFO] Test Episode 5/100 | Reward: 114.00 | Length: 75 | Success: Yes
+2025-05-04 02:52:25,806 [INFO] Test Episode 6/100 | Reward: 128.00 | Length: 49 | Success: Yes
+2025-05-04 02:52:26,128 [INFO] Test Episode 7/100 | Reward: 3.00 | Length: 160 | Success: Yes
+2025-05-04 02:52:26,358 [INFO] Test Episode 8/100 | Reward: 58.00 | Length: 115 | Success: Yes
+2025-05-04 02:52:26,635 [INFO] Test Episode 9/100 | Reward: 28.00 | Length: 137 | Success: Yes
+2025-05-04 02:52:26,738 [INFO] Test Episode 10/100 | Reward: 134.00 | Length: 51 | Success: Yes
+2025-05-04 02:52:26,856 [INFO] Test Episode 11/100 | Reward: 129.00 | Length: 56 | Success: Yes
+2025-05-04 02:52:27,148 [INFO] Test Episode 12/100 | Reward: 17.00 | Length: 145 | Success: Yes
+2025-05-04 02:52:27,329 [INFO] Test Episode 13/100 | Reward: 81.00 | Length: 91 | Success: Yes
+2025-05-04 02:52:27,531 [INFO] Test Episode 14/100 | Reward: 83.00 | Length: 98 | Success: Yes
+2025-05-04 02:52:27,590 [INFO] Test Episode 15/100 | Reward: 161.00 | Length: 29 | Success: Yes
+2025-05-04 02:52:27,732 [INFO] Test Episode 16/100 | Reward: 107.00 | Length: 71 | Success: Yes
+2025-05-04 02:52:27,944 [INFO] Test Episode 17/100 | Reward: -25.00 | Length: 101 | Success: Yes
+2025-05-04 02:52:28,401 [INFO] Test Episode 18/100 | Reward: -85.00 | Length: 226 | Success: Yes
+2025-05-04 02:52:28,555 [INFO] Test Episode 19/100 | Reward: 99.00 | Length: 77 | Success: Yes
+2025-05-04 02:52:28,797 [INFO] Test Episode 20/100 | Reward: 55.00 | Length: 117 | Success: Yes
+2025-05-04 02:52:28,954 [INFO] Test Episode 21/100 | Reward: 93.00 | Length: 78 | Success: Yes
+2025-05-04 02:52:29,102 [INFO] Test Episode 22/100 | Reward: 107.00 | Length: 69 | Success: Yes
+2025-05-04 02:52:29,476 [INFO] Test Episode 23/100 | Reward: -28.00 | Length: 185 | Success: Yes
+2025-05-04 02:52:29,982 [INFO] Test Episode 24/100 | Reward: -134.00 | Length: 181 | Success: Yes
+2025-05-04 02:52:30,111 [INFO] Test Episode 25/100 | Reward: 119.00 | Length: 65 | Success: Yes
+2025-05-04 02:52:30,606 [INFO] Test Episode 26/100 | Reward: -14.00 | Length: 175 | Success: Yes
+2025-05-04 02:52:30,707 [INFO] Test Episode 27/100 | Reward: 137.00 | Length: 51 | Success: Yes
+2025-05-04 02:52:30,890 [INFO] Test Episode 28/100 | Reward: 86.00 | Length: 90 | Success: Yes
+2025-05-04 02:52:31,193 [INFO] Test Episode 29/100 | Reward: 24.00 | Length: 151 | Success: Yes
+2025-05-04 02:52:31,405 [INFO] Test Episode 30/100 | Reward: 69.00 | Length: 107 | Success: Yes
+2025-05-04 02:52:31,626 [INFO] Test Episode 31/100 | Reward: 59.00 | Length: 110 | Success: Yes
+2025-05-04 02:52:31,720 [INFO] Test Episode 32/100 | Reward: 135.00 | Length: 46 | Success: Yes
+2025-05-04 02:52:31,963 [INFO] Test Episode 33/100 | Reward: 50.00 | Length: 121 | Success: Yes
+2025-05-04 02:52:32,083 [INFO] Test Episode 34/100 | Reward: 124.00 | Length: 61 | Success: Yes
+2025-05-04 02:52:32,485 [INFO] Test Episode 35/100 | Reward: -54.00 | Length: 201 | Success: Yes
+2025-05-04 02:52:32,558 [INFO] Test Episode 36/100 | Reward: 149.00 | Length: 36 | Success: Yes
+2025-05-04 02:52:32,826 [INFO] Test Episode 37/100 | Reward: 43.00 | Length: 134 | Success: Yes
+2025-05-04 02:52:33,022 [INFO] Test Episode 38/100 | Reward: 79.00 | Length: 98 | Success: Yes
+2025-05-04 02:52:33,267 [INFO] Test Episode 39/100 | Reward: 43.00 | Length: 121 | Success: Yes
+2025-05-04 02:52:33,524 [INFO] Test Episode 40/100 | Reward: 46.00 | Length: 127 | Success: Yes
+2025-05-04 02:52:33,751 [INFO] Test Episode 41/100 | Reward: 74.00 | Length: 108 | Success: Yes
+2025-05-04 02:52:33,970 [INFO] Test Episode 42/100 | Reward: 66.00 | Length: 106 | Success: Yes
+2025-05-04 02:52:34,311 [INFO] Test Episode 43/100 | Reward: -10.00 | Length: 170 | Success: Yes
+2025-05-04 02:52:34,490 [INFO] Test Episode 44/100 | Reward: 86.00 | Length: 89 | Success: Yes
+2025-05-04 02:52:34,695 [INFO] Test Episode 45/100 | Reward: 67.00 | Length: 102 | Success: Yes
+2025-05-04 02:52:34,905 [INFO] Test Episode 46/100 | Reward: 68.00 | Length: 104 | Success: Yes
+2025-05-04 02:52:35,099 [INFO] Test Episode 47/100 | Reward: 88.00 | Length: 96 | Success: Yes
+2025-05-04 02:52:35,304 [INFO] Test Episode 48/100 | Reward: 67.00 | Length: 102 | Success: Yes
+2025-05-04 02:52:35,472 [INFO] Test Episode 49/100 | Reward: -8.00 | Length: 83 | Success: Yes
+2025-05-04 02:52:35,580 [INFO] Test Episode 50/100 | Reward: 123.00 | Length: 54 | Success: Yes
+2025-05-04 02:52:35,629 [INFO] Test Episode 51/100 | Reward: 167.00 | Length: 24 | Success: Yes
+2025-05-04 02:52:35,851 [INFO] Test Episode 52/100 | Reward: 55.00 | Length: 108 | Success: Yes
+2025-05-04 02:52:35,974 [INFO] Test Episode 53/100 | Reward: 119.00 | Length: 61 | Success: Yes
+2025-05-04 02:52:36,177 [INFO] Test Episode 54/100 | Reward: 74.00 | Length: 100 | Success: Yes
+2025-05-04 02:52:36,599 [INFO] Test Episode 55/100 | Reward: -52.00 | Length: 208 | Success: Yes
+2025-05-04 02:52:36,746 [INFO] Test Episode 56/100 | Reward: 99.00 | Length: 72 | Success: Yes
+2025-05-04 02:52:37,070 [INFO] Test Episode 57/100 | Reward: -9.00 | Length: 161 | Success: Yes
+2025-05-04 02:52:37,232 [INFO] Test Episode 58/100 | Reward: 104.00 | Length: 81 | Success: Yes
+2025-05-04 02:52:37,574 [INFO] Test Episode 59/100 | Reward: -28.00 | Length: 171 | Success: Yes
+2025-05-04 02:52:37,723 [INFO] Test Episode 60/100 | Reward: 102.00 | Length: 75 | Success: Yes
+2025-05-04 02:52:37,897 [INFO] Test Episode 61/100 | Reward: 86.00 | Length: 83 | Success: Yes
+2025-05-04 02:52:38,008 [INFO] Test Episode 62/100 | Reward: 133.00 | Length: 55 | Success: Yes
+2025-05-04 02:52:38,318 [INFO] Test Episode 63/100 | Reward: -94.00 | Length: 153 | Success: Yes
+2025-05-04 02:52:38,498 [INFO] Test Episode 64/100 | Reward: 83.00 | Length: 89 | Success: Yes
+2025-05-04 02:52:38,724 [INFO] Test Episode 65/100 | Reward: 60.00 | Length: 112 | Success: Yes
+2025-05-04 02:52:39,054 [INFO] Test Episode 66/100 | Reward: -2.00 | Length: 163 | Success: Yes
+2025-05-04 02:52:39,144 [INFO] Test Episode 67/100 | Reward: 143.00 | Length: 45 | Success: Yes
+2025-05-04 02:52:39,283 [INFO] Test Episode 68/100 | Reward: 107.00 | Length: 68 | Success: Yes
+2025-05-04 02:52:39,748 [INFO] Test Episode 69/100 | Reward: 56.00 | Length: 110 | Success: Yes
+2025-05-04 02:52:39,892 [INFO] Test Episode 70/100 | Reward: 103.00 | Length: 73 | Success: Yes
+2025-05-04 02:52:40,089 [INFO] Test Episode 71/100 | Reward: 72.00 | Length: 99 | Success: Yes
+2025-05-04 02:52:40,308 [INFO] Test Episode 72/100 | Reward: 61.00 | Length: 111 | Success: Yes
+2025-05-04 02:52:40,452 [INFO] Test Episode 73/100 | Reward: 103.00 | Length: 73 | Success: Yes
+2025-05-04 02:52:40,561 [INFO] Test Episode 74/100 | Reward: 129.00 | Length: 54 | Success: Yes
+2025-05-04 02:52:40,955 [INFO] Test Episode 75/100 | Reward: -42.00 | Length: 197 | Success: Yes
+2025-05-04 02:52:41,389 [INFO] Test Episode 76/100 | Reward: -86.00 | Length: 217 | Success: Yes
+2025-05-04 02:52:41,718 [INFO] Test Episode 77/100 | Reward: -42.00 | Length: 105 | Success: Yes
+2025-05-04 02:52:41,878 [INFO] Test Episode 78/100 | Reward: 93.00 | Length: 81 | Success: Yes
+2025-05-04 02:52:42,275 [INFO] Test Episode 79/100 | Reward: -51.00 | Length: 198 | Success: Yes
+2025-05-04 02:52:42,619 [INFO] Test Episode 80/100 | Reward: -12.00 | Length: 174 | Success: Yes
+2025-05-04 02:52:43,035 [INFO] Test Episode 81/100 | Reward: -57.00 | Length: 210 | Success: Yes
+2025-05-04 02:52:43,370 [INFO] Test Episode 82/100 | Reward: -9.00 | Length: 168 | Success: Yes
+2025-05-04 02:52:43,568 [INFO] Test Episode 83/100 | Reward: 75.00 | Length: 100 | Success: Yes
+2025-05-04 02:52:43,655 [INFO] Test Episode 84/100 | Reward: 146.00 | Length: 40 | Success: Yes
+2025-05-04 02:52:43,864 [INFO] Test Episode 85/100 | Reward: 77.00 | Length: 101 | Success: Yes
+2025-05-04 02:52:43,947 [INFO] Test Episode 86/100 | Reward: 144.00 | Length: 41 | Success: Yes
+2025-05-04 02:52:44,195 [INFO] Test Episode 87/100 | Reward: 60.00 | Length: 119 | Success: Yes
+2025-05-04 02:52:44,554 [INFO] Test Episode 88/100 | Reward: -20.00 | Length: 179 | Success: Yes
+2025-05-04 02:52:44,712 [INFO] Test Episode 89/100 | Reward: 99.00 | Length: 79 | Success: Yes
+2025-05-04 02:52:44,956 [INFO] Test Episode 90/100 | Reward: -50.00 | Length: 119 | Success: Yes
+2025-05-04 02:52:45,253 [INFO] Test Episode 91/100 | Reward: 8.00 | Length: 146 | Success: Yes
+2025-05-04 02:52:45,404 [INFO] Test Episode 92/100 | Reward: 101.00 | Length: 76 | Success: Yes
+2025-05-04 02:52:45,665 [INFO] Test Episode 93/100 | Reward: 44.00 | Length: 126 | Success: Yes
+2025-05-04 02:52:45,860 [INFO] Test Episode 94/100 | Reward: 90.00 | Length: 95 | Success: Yes
+2025-05-04 02:52:46,083 [INFO] Test Episode 95/100 | Reward: 64.00 | Length: 108 | Success: Yes
+2025-05-04 02:52:46,344 [INFO] Test Episode 96/100 | Reward: 34.00 | Length: 127 | Success: Yes
+2025-05-04 02:52:46,639 [INFO] Test Episode 97/100 | Reward: 12.00 | Length: 145 | Success: Yes
+2025-05-04 02:52:46,807 [INFO] Test Episode 98/100 | Reward: 105.00 | Length: 84 | Success: Yes
+2025-05-04 02:52:47,045 [INFO] Test Episode 99/100 | Reward: 55.00 | Length: 115 | Success: Yes
+2025-05-04 02:52:47,213 [INFO] Test Episode 100/100 | Reward: 89.00 | Length: 84 | Success: Yes
+2025-05-04 02:52:47,213 [INFO] 
+Test Results Summary:
+2025-05-04 02:52:47,213 [INFO] Average Reward: 53.77
+2025-05-04 02:52:47,213 [INFO] Average Episode Length: 110.0
+2025-05-04 02:52:47,213 [INFO] Success Rate: 100.00% (100/100)
+2025-05-04 02:52:47,213 [INFO] Timeout Rate: 0.00% (0/100)
+2025-05-04 02:52:47,213 [INFO] Testing completed for small-honeypot. Average reward over 100 episodes: 53.770
+2025-05-04 02:52:48,214 [INFO] 
+==================== Preparing Scenario: small-linear ====================
+2025-05-04 02:52:48,214 [INFO] Instantiating agent using dummy env...
+2025-05-04 02:52:48,225 [INFO] Model initialized with 720,275 trainable parameters
+2025-05-04 02:52:48,226 [INFO] Initial GPU memory: 16.5MB / 50000000.0MB
+2025-05-04 02:52:48,226 [INFO] Loading model for 'small-linear' from: scenario_checkpoints/small-linear/final_model.pt
+2025-05-04 02:52:48,226 [INFO] Using Device: cuda
+2025-05-04 02:52:48,226 [INFO] Loading checkpoint from: scenario_checkpoints/small-linear/final_model.pt
+2025-05-04 02:52:48,241 [INFO] Recreating networks with dims from checkpoint: obs=198, action=72, hidden=128, lstm_layers=5
+2025-05-04 02:52:48,249 [INFO] Loaded LSTM state from checkpoint (strict=False).
+2025-05-04 02:52:48,249 [INFO] Loaded A2C state from checkpoint (strict=False).
+2025-05-04 02:52:48,249 [INFO] Created new optimizer with learning rate: 0.0001. Optimizer state not transferred due to dimension change.
+2025-05-04 02:52:48,249 [INFO] Loaded scheduler state.
+2025-05-04 02:52:48,249 [INFO] Agent loaded successfully from scenario_checkpoints/small-linear/final_model.pt
+2025-05-04 02:52:48,249 [INFO] Model for 'small-linear' loaded successfully.
+2025-05-04 02:52:48,249 [INFO] 
+--- Testing Scenario: small-linear ---
+2025-05-04 02:52:48,254 [INFO] 
+Testing agent on small-linear for 100 episodes
+2025-05-04 02:52:48,254 [INFO] Using deterministic actions: False
+2025-05-04 02:52:49,224 [INFO] Test Episode 1/100 | Reward: -334.00 | Length: 460 | Success: Yes
+2025-05-04 02:52:50,614 [INFO] Test Episode 2/100 | Reward: -597.00 | Length: 703 | Success: Yes
+2025-05-04 02:52:51,869 [INFO] Test Episode 3/100 | Reward: -510.00 | Length: 623 | Success: Yes
+2025-05-04 02:52:53,115 [INFO] Test Episode 4/100 | Reward: -505.00 | Length: 615 | Success: Yes
+2025-05-04 02:52:55,120 [INFO] Test Episode 5/100 | Reward: -1043.00 | Length: 1000 | Success: Yes (Timeout)
+2025-05-04 02:52:55,932 [INFO] Test Episode 6/100 | Reward: -275.00 | Length: 404 | Success: Yes
+2025-05-04 02:52:57,966 [INFO] Test Episode 7/100 | Reward: -1035.00 | Length: 1000 | Success: Yes (Timeout)
+2025-05-04 02:52:59,496 [INFO] Test Episode 8/100 | Reward: -663.00 | Length: 759 | Success: Yes
+2025-05-04 02:53:01,308 [INFO] Test Episode 9/100 | Reward: -827.00 | Length: 895 | Success: Yes
+2025-05-04 02:53:02,274 [INFO] Test Episode 10/100 | Reward: -363.00 | Length: 485 | Success: Yes
+2025-05-04 02:53:03,554 [INFO] Test Episode 11/100 | Reward: -542.00 | Length: 641 | Success: Yes
+2025-05-04 02:53:04,259 [INFO] Test Episode 12/100 | Reward: -205.00 | Length: 345 | Success: Yes
+2025-05-04 02:53:06,294 [INFO] Test Episode 13/100 | Reward: -934.00 | Length: 955 | Success: Yes
+2025-05-04 02:53:07,280 [INFO] Test Episode 14/100 | Reward: -346.00 | Length: 471 | Success: Yes
+2025-05-04 02:53:08,418 [INFO] Test Episode 15/100 | Reward: -439.00 | Length: 551 | Success: Yes
+2025-05-04 02:53:09,675 [INFO] Test Episode 16/100 | Reward: -500.00 | Length: 601 | Success: Yes
+2025-05-04 02:53:10,620 [INFO] Test Episode 17/100 | Reward: -335.00 | Length: 459 | Success: Yes
+2025-05-04 02:53:12,680 [INFO] Test Episode 18/100 | Reward: -1063.00 | Length: 1000 | Success: Yes (Timeout)
+2025-05-04 02:53:13,524 [INFO] Test Episode 19/100 | Reward: -284.00 | Length: 410 | Success: Yes
+2025-05-04 02:53:14,353 [INFO] Test Episode 20/100 | Reward: -261.00 | Length: 404 | Success: Yes
+2025-05-04 02:53:16,273 [INFO] Test Episode 21/100 | Reward: -821.00 | Length: 888 | Success: Yes
+2025-05-04 02:53:17,749 [INFO] Test Episode 22/100 | Reward: -633.00 | Length: 722 | Success: Yes
+2025-05-04 02:53:18,559 [INFO] Test Episode 23/100 | Reward: -253.00 | Length: 401 | Success: Yes
+2025-05-04 02:53:19,134 [INFO] Test Episode 24/100 | Reward: -129.00 | Length: 278 | Success: Yes
+2025-05-04 02:53:21,068 [INFO] Test Episode 25/100 | Reward: -882.00 | Length: 951 | Success: Yes
+2025-05-04 02:53:21,600 [INFO] Test Episode 26/100 | Reward: -102.00 | Length: 258 | Success: Yes
+2025-05-04 02:53:22,589 [INFO] Test Episode 27/100 | Reward: -350.00 | Length: 477 | Success: Yes
+2025-05-04 02:53:23,318 [INFO] Test Episode 28/100 | Reward: -214.00 | Length: 358 | Success: Yes
+2025-05-04 02:53:24,877 [INFO] Test Episode 29/100 | Reward: -686.00 | Length: 759 | Success: Yes
+2025-05-04 02:53:26,021 [INFO] Test Episode 30/100 | Reward: -465.00 | Length: 562 | Success: Yes
+2025-05-04 02:53:27,416 [INFO] Test Episode 31/100 | Reward: -614.00 | Length: 686 | Success: Yes
+2025-05-04 02:53:28,227 [INFO] Test Episode 32/100 | Reward: -285.00 | Length: 401 | Success: Yes
+2025-05-04 02:53:29,665 [INFO] Test Episode 33/100 | Reward: -637.00 | Length: 704 | Success: Yes
+2025-05-04 02:53:30,625 [INFO] Test Episode 34/100 | Reward: -326.00 | Length: 454 | Success: Yes
+2025-05-04 02:53:31,767 [INFO] Test Episode 35/100 | Reward: -434.00 | Length: 563 | Success: Yes
+2025-05-04 02:53:32,887 [INFO] Test Episode 36/100 | Reward: -451.00 | Length: 557 | Success: Yes
+2025-05-04 02:53:33,964 [INFO] Test Episode 37/100 | Reward: -397.00 | Length: 529 | Success: Yes
+2025-05-04 02:53:35,254 [INFO] Test Episode 38/100 | Reward: -566.00 | Length: 642 | Success: Yes
+2025-05-04 02:53:35,752 [INFO] Test Episode 39/100 | Reward: -94.00 | Length: 245 | Success: Yes
+2025-05-04 02:53:37,253 [INFO] Test Episode 40/100 | Reward: -650.00 | Length: 742 | Success: Yes
+2025-05-04 02:53:39,271 [INFO] Test Episode 41/100 | Reward: -1149.00 | Length: 1000 | Success: Yes (Timeout)
+2025-05-04 02:53:40,548 [INFO] Test Episode 42/100 | Reward: -533.00 | Length: 636 | Success: Yes
+2025-05-04 02:53:41,235 [INFO] Test Episode 43/100 | Reward: -193.00 | Length: 338 | Success: Yes
+2025-05-04 02:53:42,730 [INFO] Test Episode 44/100 | Reward: -663.00 | Length: 735 | Success: Yes
+2025-05-04 02:53:43,038 [INFO] Test Episode 45/100 | Reward: 22.00 | Length: 151 | Success: Yes
+2025-05-04 02:53:44,842 [INFO] Test Episode 46/100 | Reward: -853.00 | Length: 879 | Success: Yes
+2025-05-04 02:53:45,995 [INFO] Test Episode 47/100 | Reward: -430.00 | Length: 539 | Success: Yes
+2025-05-04 02:53:46,585 [INFO] Test Episode 48/100 | Reward: -132.00 | Length: 290 | Success: Yes
+2025-05-04 02:53:48,121 [INFO] Test Episode 49/100 | Reward: -684.00 | Length: 759 | Success: Yes
+2025-05-04 02:53:49,418 [INFO] Test Episode 50/100 | Reward: -536.00 | Length: 640 | Success: Yes
+2025-05-04 02:53:50,464 [INFO] Test Episode 51/100 | Reward: -415.00 | Length: 517 | Success: Yes
+2025-05-04 02:53:51,291 [INFO] Test Episode 52/100 | Reward: -271.00 | Length: 404 | Success: Yes
+2025-05-04 02:53:53,604 [INFO] Test Episode 53/100 | Reward: -1148.00 | Length: 1000 | Success: Yes (Timeout)
+2025-05-04 02:53:54,594 [INFO] Test Episode 54/100 | Reward: -387.00 | Length: 494 | Success: Yes
+2025-05-04 02:53:56,867 [INFO] Test Episode 55/100 | Reward: -781.00 | Length: 815 | Success: Yes
+2025-05-04 02:53:58,488 [INFO] Test Episode 56/100 | Reward: -766.00 | Length: 812 | Success: Yes
+2025-05-04 02:54:00,555 [INFO] Test Episode 57/100 | Reward: -1046.00 | Length: 1000 | Success: No (Timeout)
+2025-05-04 02:54:01,469 [INFO] Test Episode 58/100 | Reward: -333.00 | Length: 451 | Success: Yes
+2025-05-04 02:54:02,463 [INFO] Test Episode 59/100 | Reward: -389.00 | Length: 493 | Success: Yes
+2025-05-04 02:54:03,481 [INFO] Test Episode 60/100 | Reward: -404.00 | Length: 503 | Success: Yes
+2025-05-04 02:54:04,996 [INFO] Test Episode 61/100 | Reward: -676.00 | Length: 746 | Success: Yes
+2025-05-04 02:54:07,030 [INFO] Test Episode 62/100 | Reward: -1060.00 | Length: 1000 | Success: No (Timeout)
+2025-05-04 02:54:08,146 [INFO] Test Episode 63/100 | Reward: -436.00 | Length: 555 | Success: Yes
+2025-05-04 02:54:09,659 [INFO] Test Episode 64/100 | Reward: -671.00 | Length: 747 | Success: Yes
+2025-05-04 02:54:11,673 [INFO] Test Episode 65/100 | Reward: -1041.00 | Length: 1000 | Success: No (Timeout)
+2025-05-04 02:54:12,533 [INFO] Test Episode 66/100 | Reward: -299.00 | Length: 429 | Success: Yes
+2025-05-04 02:54:13,723 [INFO] Test Episode 67/100 | Reward: -473.00 | Length: 593 | Success: Yes
+2025-05-04 02:54:14,548 [INFO] Test Episode 68/100 | Reward: -269.00 | Length: 411 | Success: Yes
+2025-05-04 02:54:15,488 [INFO] Test Episode 69/100 | Reward: -313.00 | Length: 440 | Success: Yes
+2025-05-04 02:54:16,502 [INFO] Test Episode 70/100 | Reward: -382.00 | Length: 501 | Success: Yes
+2025-05-04 02:54:17,841 [INFO] Test Episode 71/100 | Reward: -569.00 | Length: 664 | Success: Yes
+2025-05-04 02:54:19,178 [INFO] Test Episode 72/100 | Reward: -519.00 | Length: 613 | Success: Yes
+2025-05-04 02:54:21,508 [INFO] Test Episode 73/100 | Reward: -868.00 | Length: 923 | Success: Yes
+2025-05-04 02:54:22,633 [INFO] Test Episode 74/100 | Reward: -462.00 | Length: 559 | Success: Yes

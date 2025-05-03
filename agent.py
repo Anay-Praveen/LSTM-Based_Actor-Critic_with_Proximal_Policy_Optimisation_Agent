@@ -954,7 +954,7 @@ class NASIMOffensiveAgent:
     def train_curriculum(self, scenarios, episodes_per_scenario):
         """Train the agent through a curriculum of scenarios."""
         # Initialize experiment directory
-        curriculum_dir = f"curriculum_experiments/{self.timestamp}"
+        curriculum_dir = f"curriculum_experiments/Checkpoints"
         os.makedirs(curriculum_dir, exist_ok=True)
 
         # Save curriculum configuration
@@ -1281,90 +1281,149 @@ class NASIMOffensiveAgent:
         }, path)
 
     def load(self, path):
-        """Load the agent's networks and training state."""
-        checkpoint = torch.load(path, map_location=device)
+        """Load the agent's networks and training state, handling dimension changes."""
+        if not os.path.exists(path):
+            logger.error(f"Checkpoint file not found at: {path}")
+            raise FileNotFoundError(f"Checkpoint file not found at: {path}")
 
-        # Load model architecture parameters
+        logger.info(f"Loading checkpoint from: {path}")
+        # Add the FutureWarning suppression only if necessary, or address it
+        # The recommendation is to use weights_only=True if possible.
+        # If you MUST load arbitrary code via pickle, be absolutely sure of the source.
+        # For now, keeping original behavior but user should be aware.
+        checkpoint = torch.load(path, map_location=device)  # Add weights_only=True if appropriate
+
+        # --- Load model architecture parameters ---
         # Use .get() with defaults to handle older checkpoints missing keys
-        self.obs_dim = checkpoint.get('obs_dim', self.obs_dim)
-        self.action_dim = checkpoint.get('action_dim', self.action_dim)
-        hidden_dim = checkpoint.get('hidden_dim', self.lstm.hidden_dim)
-        lstm_layers = checkpoint.get('lstm_layers', self.lstm.lstm_layers)
+        ckpt_obs_dim = checkpoint.get('obs_dim')
+        ckpt_action_dim = checkpoint.get('action_dim')
+        ckpt_hidden_dim = checkpoint.get('hidden_dim')
+        ckpt_lstm_layers = checkpoint.get('lstm_layers')
 
-        # Get current network dimensions for comparison
-        current_lstm_input_dim = self.lstm.input_layer[0].in_features if hasattr(self.lstm.input_layer[0], 'in_features') else -1
-        current_a2c_output_dim = self.a2c.policy_head[-1].out_features if hasattr(self.a2c.policy_head[-1], 'out_features') else -1
+        # Validate essential parameters were found in checkpoint
+        if None in [ckpt_obs_dim, ckpt_action_dim, ckpt_hidden_dim, ckpt_lstm_layers]:
+            logger.warning("Checkpoint missing one or more dimension/layer parameters. Using current agent defaults.")
+            # Use current agent attributes as fallback if checkpoint is missing info
+            ckpt_obs_dim = ckpt_obs_dim if ckpt_obs_dim is not None else self.obs_dim
+            ckpt_action_dim = ckpt_action_dim if ckpt_action_dim is not None else self.action_dim
+            ckpt_hidden_dim = ckpt_hidden_dim if ckpt_hidden_dim is not None else self.lstm.hidden_dim
+            ckpt_lstm_layers = ckpt_lstm_layers if ckpt_lstm_layers is not None else self.lstm.lstm_layers
 
-        # Flag to check if network architecture needs recreation
-        recreate_networks = (self.obs_dim != current_lstm_input_dim or
-                             self.action_dim != current_a2c_output_dim or
-                             hidden_dim != self.lstm.hidden_dim or
-                             lstm_layers != self.lstm.lstm_layers)
-
-        if recreate_networks:
+        # --- Check if network architecture needs recreation ---
+        # Compare checkpoint dimensions with the *current* agent's network dimensions
+        recreate_networks = False
+        if (ckpt_obs_dim != self.obs_dim or
+                ckpt_action_dim != self.action_dim or
+                ckpt_hidden_dim != self.lstm.hidden_dim or
+                ckpt_lstm_layers != self.lstm.lstm_layers):
+            recreate_networks = True
             logger.info(
-                f"Recreating networks with dims from checkpoint: obs={self.obs_dim}, action={self.action_dim}, hidden={hidden_dim}, lstm_layers={lstm_layers}")
+                f"Recreating networks with dims from checkpoint: obs={ckpt_obs_dim}, action={ckpt_action_dim}, hidden={ckpt_hidden_dim}, lstm_layers={ckpt_lstm_layers}")
+            # Update agent's dimensions based on the checkpoint being loaded
+            self.obs_dim = ckpt_obs_dim
+            self.action_dim = ckpt_action_dim
 
-            # Preserve old network states for potential partial loading
-            old_lstm_state = self.lstm.state_dict()
-            old_a2c_state = self.a2c.state_dict()
+        # --- Load Network States ---
+        if recreate_networks:
+            # Create new networks with dimensions from the checkpoint
+            # Note: hidden_dim and lstm_layers should come from ckpt_ variables now
+            self.lstm = LSTM(self.obs_dim, ckpt_hidden_dim, ckpt_lstm_layers).to(device)
+            self.a2c = A2CNetwork(ckpt_hidden_dim, ckpt_hidden_dim, self.action_dim).to(device)
 
-            self.lstm = LSTM(self.obs_dim, hidden_dim, lstm_layers).to(device)
-            self.a2c = A2CNetwork(hidden_dim, hidden_dim, self.action_dim).to(device) # Using A2CNetwork
+            # --- CORRECTED LOGIC ---
+            # Load state dicts from the CHECKPOINT data, not from old_state
+            # Use strict=False to allow loading even if some keys are unexpectedly missing/extra
+            # (e.g., if network definition changed slightly between saving and loading)
+            if 'lstm_state_dict' in checkpoint:
+                try:
+                    missing_keys, unexpected_keys = self.lstm.load_state_dict(checkpoint['lstm_state_dict'],
+                                                                              strict=False)
+                    if missing_keys:
+                        logger.warning(f"LSTM loaded with missing keys: {missing_keys}")
+                    if unexpected_keys:
+                        logger.warning(f"LSTM loaded with unexpected keys: {unexpected_keys}")
+                    logger.info("Loaded LSTM state from checkpoint (strict=False).")
+                except Exception as e:
+                    logger.error(f"Error loading LSTM state dict from checkpoint: {e}", exc_info=True)
+            else:
+                logger.warning("Checkpoint missing 'lstm_state_dict'. LSTM network initialized randomly.")
 
-            # Attempt to partially load old states into new networks
-            try:
-                self.lstm.load_state_dict(old_lstm_state, strict=False)
-                logger.info("Partially loaded old LSTM state into new network.")
-            except Exception as e:
-                logger.warning(f"Could not partially load old LSTM state: {e}")
+            if 'a2c_state_dict' in checkpoint:
+                try:
+                    missing_keys, unexpected_keys = self.a2c.load_state_dict(checkpoint['a2c_state_dict'], strict=False)
+                    if missing_keys:
+                        logger.warning(f"A2C loaded with missing keys: {missing_keys}")
+                    if unexpected_keys:
+                        logger.warning(f"A2C loaded with unexpected keys: {unexpected_keys}")
+                    logger.info("Loaded A2C state from checkpoint (strict=False).")
+                except Exception as e:
+                    logger.error(f"Error loading A2C state dict from checkpoint: {e}", exc_info=True)
+            else:
+                logger.warning("Checkpoint missing 'a2c_state_dict'. A2C network initialized randomly.")
+            # --- END CORRECTION ---
 
-            try:
-                self.a2c.load_state_dict(old_a2c_state, strict=False)
-                logger.info("Partially loaded old A2C state into new network.")
-            except Exception as e:
-                logger.warning(f"Could not partially load old A2C state: {e}")
+            # --- Optimizer Handling ---
+            # Create a new optimizer because network parameters changed.
+            # Try to get LR from checkpoint, otherwise use a default.
+            current_lr = self.optimizer.param_groups[0]['lr']  # Default to existing LR
+            if 'optimizer_state_dict' in checkpoint and checkpoint['optimizer_state_dict']['param_groups']:
+                current_lr = checkpoint['optimizer_state_dict']['param_groups'][0]['lr']
 
-
-            # Create a new optimizer instance with the current parameters
-            # This is necessary because the model parameters have changed
-            current_lr = checkpoint['optimizer_state_dict']['param_groups'][0]['lr'] if 'optimizer_state_dict' in checkpoint else 0.0001
             self.optimizer = optim.Adam(
-                list(self.lstm.parameters()) + list(self.a2c.parameters()), # Updated parameters
+                list(self.lstm.parameters()) + list(self.a2c.parameters()),
                 lr=current_lr
             )
-            logger.info(f"Created new optimizer with learning rate: {current_lr}. Optimizer state not transferred due to dimension change.")
+            logger.info(
+                f"Created new optimizer with learning rate: {current_lr}. Optimizer state not transferred due to dimension change.")
 
         else:
-             # Dimensions match, load state dicts normally
-             self.lstm.load_state_dict(checkpoint['lstm_state_dict'])
-             self.a2c.load_state_dict(checkpoint['a2c_state_dict']) # Using A2CNetwork
-             # Load optimizer state if dimensions match
-             if 'optimizer_state_dict' in checkpoint:
-                 self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-                 logger.info("Loaded optimizer state.")
+            # Dimensions match, load state dicts normally (use strict=True by default)
+            try:
+                self.lstm.load_state_dict(checkpoint['lstm_state_dict'])
+                self.a2c.load_state_dict(checkpoint['a2c_state_dict'])
+                logger.info("Loaded LSTM and A2C states (strict=True).")
+            except KeyError as e:
+                logger.error(f"Checkpoint missing required key: {e}. Cannot load model state.", exc_info=True)
+                # Depending on desired behavior, you might raise the error or allow random init
+                raise RuntimeError(f"Checkpoint missing required key: {e}") from e
+            except Exception as e:
+                logger.error(f"Error loading model state dicts: {e}", exc_info=True)
+                raise RuntimeError(f"Error loading model state dicts: {e}") from e
 
+            # Load optimizer state ONLY if dimensions match
+            if 'optimizer_state_dict' in checkpoint:
+                try:
+                    self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+                    logger.info("Loaded optimizer state.")
+                except Exception as e:
+                    logger.warning(f"Could not load optimizer state dict, creating new one. Error: {e}", exc_info=True)
+                    # Recreate optimizer if loading fails, using loaded LR if possible
+                    current_lr = checkpoint['optimizer_state_dict']['param_groups'][0]['lr'] if \
+                    checkpoint['optimizer_state_dict']['param_groups'] else self.optimizer.param_groups[0]['lr']
+                    self.optimizer = optim.Adam(
+                        list(self.lstm.parameters()) + list(self.a2c.parameters()),
+                        lr=current_lr
+                    )
 
-        # Load scheduler if available
+        # --- Load scheduler if available ---
         if 'scheduler_state_dict' in checkpoint:
             try:
                 self.scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+                logger.info("Loaded scheduler state.")
             except Exception as e:
-                 logger.warning(f"Could not load scheduler state dict: {e}")
+                logger.warning(f"Could not load scheduler state dict: {e}")
 
-
-        # Load hyperparameters (use .get() with defaults)
+        # --- Load hyperparameters (use .get() with defaults) ---
         self.clip_ratio = checkpoint.get('clip_ratio', self.clip_ratio)
         self.entropy_coef = checkpoint.get('entropy_coef', self.entropy_coef)
         self.reward_clip = checkpoint.get('reward_clip', self.reward_clip)
-        self.ppo_epochs = checkpoint.get('ppo_epochs', self.ppo_epochs) # Keeping original name
-        self.ppo_batch_size = checkpoint.get('ppo_batch_size', self.ppo_batch_size) # Keeping original name
-        self.progress_advantage_alpha = checkpoint.get('progress_advantage_alpha', self.progress_advantage_alpha) # Added alpha
+        self.ppo_epochs = checkpoint.get('ppo_epochs', self.ppo_epochs)
+        self.ppo_batch_size = checkpoint.get('ppo_batch_size', self.ppo_batch_size)
+        self.progress_advantage_alpha = checkpoint.get('progress_advantage_alpha', self.progress_advantage_alpha)
 
-
-        # Load training state (use .get() with defaults)
+        # --- Load training state (use .get() with defaults) ---
         self.episode_count = checkpoint.get('episode_count', 0)
         self.scenario_history = checkpoint.get('scenario_history', [])
         self.scenario_performances = checkpoint.get('scenario_performances', {})
 
-        logger.info(f"Loaded agent from {path}")
+        logger.info(f"Agent loaded successfully from {path}")
