@@ -87,18 +87,18 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
 
 ## File Structure
 .
-├── agent.py              # Core RL logic
-├── main.py               # Script for curriculum training
-├── memory.py             # Memory buffer for storing transitions
-├── networks.py           # LSTM and A2C network architectures
-├── plot.py               # Utility functions for plotting metrics
-├── test_agent.py         # Script for interactive testing
-├── utils.py              # Utility functions for logging, seeds, etc.
-├── scenario_checkpoints/ # Directory for scenario model checkpoints
-├── curriculum_experiments/ # Directory for curriculum training results
-├── metrics_Plot/         # Directory for training performance plots
-├── experiment.log        # Log file for training/testing output
-└── README.md             # This file
+*├── agent.py              # Core RL logic
+*├── main.py               # Script for curriculum training
+*├── memory.py             # Memory buffer for storing transitions
+*├── networks.py           # LSTM and A2C network architectures
+*├── plot.py               # Utility functions for plotting metrics
+*├── test_agent.py         # Script for interactive testing
+*├── utils.py              # Utility functions for logging, seeds, etc.
+*├── scenario_checkpoints/ # Directory for scenario model checkpoints
+*├── curriculum_experiments/ # Directory for curriculum training results
+*├── metrics_Plot/         # Directory for training performance plots
+*├── experiment.log        # Log file for training/testing output
+*└── README.md             # This file
 
 ## Results Overview
 
