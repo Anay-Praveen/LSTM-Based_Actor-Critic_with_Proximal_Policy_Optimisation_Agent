@@ -5125,3 +5125,5 @@ Completed training on small-linear
 2025-05-03 22:40:54,295 [INFO] Episode 1275/2000 | Reward: -2293.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0688
 2025-05-03 22:40:57,195 [INFO] Episode 1276/2000 | Reward: -1331.00 | Steps: 1313 | Success: Yes | Entropy: 5.0653
 2025-05-03 22:41:01,715 [INFO] Episode 1277/2000 | Reward: -2205.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0638
+2025-05-03 22:41:06,257 [INFO] Episode 1278/2000 | Reward: -2281.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0624
+2025-05-03 22:41:10,892 [INFO] Episode 1279/2000 | Reward: -2289.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0637
