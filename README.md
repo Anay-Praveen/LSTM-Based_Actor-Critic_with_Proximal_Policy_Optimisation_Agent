@@ -85,20 +85,22 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
     * If testing individual scenarios, select the desired scenario from the list.
 3.  Test results (average reward, steps, success rate) will be logged to the console and `experiment.log`.
 
-## File Structure
-.
-*├── agent.py              # Core RL logic
-*├── main.py               # Script for curriculum training
-*├── memory.py             # Memory buffer for storing transitions
-*├── networks.py           # LSTM and A2C network architectures
-*├── plot.py               # Utility functions for plotting metrics
-*├── test_agent.py         # Script for interactive testing
-*├── utils.py              # Utility functions for logging, seeds, etc.
-*├── scenario_checkpoints/ # Directory for scenario model checkpoints
-*├── curriculum_experiments/ # Directory for curriculum training results
-*├── metrics_Plot/         # Directory for training performance plots
-*├── experiment.log        # Log file for training/testing output
-*└── README.md             # This file
+this if for testing the file struct
+> Folder structure options and naming conventions for software projects
+
+### A typical top-level directory layout
+
+    .
+    ├── build                   # Compiled files (alternatively `dist`)
+    ├── docs                    # Documentation files (alternatively `doc`)
+    ├── src                     # Source files (alternatively `lib` or `app`)
+    ├── test                    # Automated tests (alternatively `spec` or `tests`)
+    ├── tools                   # Tools and utilities
+    ├── LICENSE
+    └── README.md
+
+> Use short lowercase names at least for the top-level files and folders except
+> `LICENSE`, `README.md`
 
 ## Results Overview
 
