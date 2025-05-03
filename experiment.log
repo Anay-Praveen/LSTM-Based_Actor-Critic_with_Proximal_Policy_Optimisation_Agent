@@ -5127,3 +5127,19 @@ Completed training on small-linear
 2025-05-03 22:41:01,715 [INFO] Episode 1277/2000 | Reward: -2205.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0638
 2025-05-03 22:41:06,257 [INFO] Episode 1278/2000 | Reward: -2281.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0624
 2025-05-03 22:41:10,892 [INFO] Episode 1279/2000 | Reward: -2289.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0637
+2025-05-03 22:41:14,644 [INFO] Episode 1280/2000 | Reward: -1654.00 | Steps: 1643 | Success: Yes | Entropy: 5.0629
+2025-05-03 22:41:14,644 [INFO] Progress: 1280/2000 episodes | Recent Avg Reward: -1989.10 | Recent Success Rate: 50.00%
+2025-05-03 22:41:17,806 [INFO] Episode 1281/2000 | Reward: -1431.00 | Steps: 1423 | Success: Yes | Entropy: 5.0608
+2025-05-03 22:41:22,351 [INFO] Episode 1282/2000 | Reward: -2300.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0654
+2025-05-03 22:41:24,973 [INFO] Episode 1283/2000 | Reward: -1024.00 | Steps: 1069 | Success: Yes | Entropy: 5.0627
+2025-05-03 22:41:27,124 [INFO] Episode 1284/2000 | Reward: -853.00 | Steps: 906 | Success: Yes | Entropy: 5.0627
+2025-05-03 22:41:31,616 [INFO] Episode 1285/2000 | Reward: -2292.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0650
+2025-05-03 22:41:32,364 [INFO] Episode 1286/2000 | Reward: -188.00 | Steps: 330 | Success: Yes | Entropy: 5.0598
+2025-05-03 22:41:32,379 [INFO] New best model saved with reward: -188.00
+2025-05-03 22:41:35,205 [INFO] Episode 1287/2000 | Reward: -1290.00 | Steps: 1256 | Success: Yes | Entropy: 5.0537
+2025-05-03 22:41:37,720 [INFO] Episode 1288/2000 | Reward: -1146.00 | Steps: 1149 | Success: Yes | Entropy: 5.0646
+2025-05-03 22:41:40,207 [INFO] Episode 1289/2000 | Reward: -1080.00 | Steps: 1133 | Success: Yes | Entropy: 5.0630
+2025-05-03 22:41:42,145 [INFO] Episode 1290/2000 | Reward: -816.00 | Steps: 884 | Success: Yes | Entropy: 5.0590
+2025-05-03 22:41:42,146 [INFO] Progress: 1290/2000 episodes | Recent Avg Reward: -1242.00 | Recent Success Rate: 80.00%
+2025-05-03 22:41:46,665 [INFO] Episode 1291/2000 | Reward: -2278.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0657
+2025-05-03 22:41:51,103 [INFO] Episode 1292/2000 | Reward: -2306.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0642
