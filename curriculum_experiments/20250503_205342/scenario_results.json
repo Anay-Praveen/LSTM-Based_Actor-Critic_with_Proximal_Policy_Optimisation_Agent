@@ -58,5 +58,35 @@
         "best_reward": -10.0,
         "successful_episodes": 475,
         "success_rate": 0.95
+    },
+    {
+        "scenario": "medium",
+        "completed": true,
+        "episodes": 2000,
+        "training_time": 6798.654201030731,
+        "avg_reward": -1588.866,
+        "best_reward": -59.0,
+        "successful_episodes": 1443,
+        "success_rate": 0.7215
+    },
+    {
+        "scenario": "medium-single-site",
+        "completed": true,
+        "episodes": 2000,
+        "training_time": 904.6047275066376,
+        "avg_reward": -49.143001556396484,
+        "best_reward": 191.0,
+        "successful_episodes": 1996,
+        "success_rate": 0.998
+    },
+    {
+        "scenario": "medium-multi-site",
+        "completed": true,
+        "episodes": 2000,
+        "training_time": 2724.8060278892517,
+        "avg_reward": -512.9509887695312,
+        "best_reward": 112.0,
+        "successful_episodes": 1968,
+        "success_rate": 0.984
     }
 ]

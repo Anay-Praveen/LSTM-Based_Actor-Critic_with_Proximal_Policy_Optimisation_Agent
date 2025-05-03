@@ -18,7 +18,7 @@ class A2CMemory:
         self.infos = [] # Store info dictionary for progress calculation
         self.returns = []
         self.advantages = []
-        self.batch_size = batch_size # This might not be used directly in A2C, but keeping as per original
+        self.batch_size = batch_size
 
         # Track previous state info to detect changes for progress calculation
         # These will be populated during the episode rollout in the agent

@@ -12,7 +12,7 @@ import os
 import datetime
 import json
 import csv
-# Removed: import matplotlib.pyplot as plt
+
 from typing import Dict, List, Tuple, Optional, Union, Any
 from torch.distributions import Categorical # Import Categorical here
 
@@ -47,7 +47,6 @@ class NASIMOffensiveAgent:
             self.target_hosts = None  # Will rely on other success detection methods
 
         # Neural network components (Using A2CNetwork)
-        # Increased LSTM layers for better sequential processing
         self.lstm = LSTM(self.obs_dim, hidden_size, lstm_layers).to(device)
         self.a2c = A2CNetwork(hidden_size, hidden_size, self.action_dim).to(device) # Using A2CNetwork
 
@@ -83,7 +82,7 @@ class NASIMOffensiveAgent:
         self.memory = A2CMemory(batch_size=ppo_batch_size) # Using A2CMemory
 
         # LSTM State Management
-        self.sequence_length = 10 # Keep sequence length consistent
+        self.sequence_length = 10 # Keeps the sequence length consistent
         self.obs_buffer = deque(maxlen=self.sequence_length)
         self.hidden = None # LSTM hidden state
 
@@ -103,7 +102,6 @@ class NASIMOffensiveAgent:
         self.scenario_performances = {}
 
         # Environment-specific hyperparameter settings
-        # Keeping original settings structure and names, added progress_advantage_alpha
         # Tuned alpha values based on potential scenario complexity
         self.scenario_settings = {
             'tiny': {'entropy_coef': 0.01, 'learning_rate': 0.0003, 'clip_ratio': 0.2, 'progress_advantage_alpha': 0.5}, # Lower alpha for simpler env
@@ -312,7 +310,7 @@ class NASIMOffensiveAgent:
 
 
         if len(flat_obs) != self.obs_dim:
-            # This warning is expected during scenario transitions in testing.
+
             # The padding/truncating handles the mismatch for inference.
             # logger.warning(f"Observation dimension mismatch: Expected {self.obs_dim}, got {len(flat_obs)}. Padding or truncating.")
             if len(flat_obs) < self.obs_dim:
@@ -325,8 +323,6 @@ class NASIMOffensiveAgent:
 
 
         # Normalize and convert to tensor
-        # Assuming observations are generally positive and bounded, scaling by 100.0
-        # This might need adjustment based on actual observation ranges.
         # Added a small epsilon to avoid division by zero if max value is 0
         max_val = np.max(flat_obs) if flat_obs.size > 0 else 100.0
         flat_obs = np.clip(flat_obs, 0, max_val) / (max_val + 1e-8) * 100.0 # Scale to approx 0-100 range
@@ -359,7 +355,7 @@ class NASIMOffensiveAgent:
             self.lstm.lstm.flatten_parameters()
 
             # Get LSTM features and update hidden state
-            # We need to pass the current hidden state and get the next one
+            # pass the current hidden state and get the next one
             # state_seq is [1, sequence_length, obs_dim]
             lstm_features, self.hidden = self.lstm(state_seq, self.hidden) # lstm_features is [1, hidden_dim]
 
@@ -394,7 +390,7 @@ class NASIMOffensiveAgent:
         return max(self.reward_clip[0], min(self.reward_clip[1], reward))
 
     def update_policy(self):
-        """Update policy using PPO-like update with specialized advantage.""" # Renamed description
+        """Update policy using PPO-like update with specialized advantage."""
         # Skip if no data
         if len(self.memory.states) == 0:
             return {'policy_loss': 0, 'value_loss': 0, 'entropy': 0}
@@ -405,7 +401,7 @@ class NASIMOffensiveAgent:
         total_entropy = 0
         update_count = 0
 
-        # Use the batching mechanism from the original code (PPO-like)
+
         # states_batch is [batch_size, sequence_length, obs_dim]
         for states_batch, actions_batch, old_log_probs_batch, returns_batch, advantages_batch in self.memory.get_batches():
 
@@ -429,14 +425,12 @@ class NASIMOffensiveAgent:
 
 
             # A2C Policy Loss (using clipped objective from PPO)
-            # Note: Keeping the clipped objective as per original code structure.
             ratio = torch.exp(new_log_probs - old_log_probs_batch)
             surr1 = ratio * advantages_batch
             surr2 = torch.clamp(ratio, 1.0 - self.clip_ratio, 1.0 + self.clip_ratio) * advantages_batch
             policy_loss = -torch.min(surr1, surr2).mean()
 
             # Value function loss (using clipped value loss from PPO)
-            # Note: Keeping the clipped value loss as per original code structure.
             # Ensure shapes match: values [batch_size, 1], returns_batch [batch_size]
             value_pred_clipped = values + torch.clamp(
                 values.squeeze(-1) - returns_batch, # Ensure shapes are compatible for clamp
@@ -621,7 +615,7 @@ class NASIMOffensiveAgent:
                     lr=self.optimizer.param_groups[0]['lr'] # Use the current learning rate
                 )
 
-                # We do NOT load the old optimizer state when dimensions change
+                # does NOT load the old optimizer state when dimensions change
                 # because the state tensors are tied to the old parameter sizes.
                 # The new optimizer starts with a fresh state but retains the learning rate.
 
@@ -673,8 +667,6 @@ class NASIMOffensiveAgent:
             max_steps_per_episode = 1000
         elif 'medium' in scenario_name:
             max_steps_per_episode = 2000
-        elif 'large' in scenario_name:
-            max_steps_per_episode = 5000
         else:
             max_steps_per_episode = 1000  # Default
 
@@ -1315,7 +1307,7 @@ class NASIMOffensiveAgent:
 
             # Preserve old network states for potential partial loading
             old_lstm_state = self.lstm.state_dict()
-            old_a2c_state = self.a2c.state_dict() # Corrected typo here
+            old_a2c_state = self.a2c.state_dict()
 
             self.lstm = LSTM(self.obs_dim, hidden_dim, lstm_layers).to(device)
             self.a2c = A2CNetwork(hidden_dim, hidden_dim, self.action_dim).to(device) # Using A2CNetwork

@@ -60,7 +60,7 @@ class LSTM(nn.Module):
         return lstm_out[:, -1], hidden # lstm_out[:, -1] is [batch_size, hidden_dim]
 
 
-class A2CNetwork(nn.Module): # Renamed from PPONetwork as requested
+class A2CNetwork(nn.Module):
     """Policy and Value networks for A2C algorithm."""
 
     def __init__(self, input_dim, hidden_dim, action_dim):

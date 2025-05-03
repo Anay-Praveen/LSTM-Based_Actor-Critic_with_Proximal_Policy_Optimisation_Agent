@@ -1,17 +1,11 @@
-# agent_test.py (Interactive Version)
 import gymnasium as gym
-import nasim
-import torch
 import os
-import datetime # Used indirectly by logger likely
-import time # Used in agent.test for rendering delay
-import sys # For exiting
+import time
+import sys
 
 # --- Import the Agent and Utilities ---
-# Make sure agent.py, utils.py, networks.py, memory.py,
-# and plot.py are in the same directory or accessible in the Python path.
 try:
-    # Updated import to use agent.py
+
     from agent import NASIMOffensiveAgent
     from utils import logger, device # Assuming logger and device are defined in utils
 except ImportError as e:
@@ -160,7 +154,6 @@ def main():
         logger.info("\n--- Starting Curriculum Test ---")
         logger.info(f"Testing model '{model_path}' on all {len(AVAILABLE_SCENARIOS)} scenarios.")
         for scenario in AVAILABLE_SCENARIOS:
-            # Pass the hardcoded 'deterministic_actions' value
             run_test(agent, scenario, num_episodes, render_env, deterministic_actions)
             time.sleep(1) # Small pause between scenarios
         logger.info("\n--- Curriculum Test Finished ---")
@@ -182,7 +175,6 @@ def main():
                 break
             else:
                 selected_scenario = AVAILABLE_SCENARIOS[scenario_choice - 1]
-                # Pass the hardcoded 'deterministic_actions' value
                 run_test(agent, selected_scenario, num_episodes, render_env, deterministic_actions)
 
             # Ask to continue
@@ -195,10 +187,7 @@ def main():
 
 # --- Run the main function directly when the script is executed ---
 if __name__ == "__main__":
-    # Basic logger setup if not already configured by utils.py
-    # This ensures logger messages are displayed.
-    # If utils.py already configures logging, this might be redundant
-    # but generally safe.
+
     import logging
     # Check if the specific logger we use ('lstm_ppo_agent' from utils) has handlers
     # If not, set up a basic configuration.

@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
-import numpy as np
-import logging # Import logging
 
-# Note: The logger instance needs to be passed to plot_rolling_averages
+
 
 def calculate_rolling_average(data, window_size=100):
     """Calculate rolling average for a given data list."""
