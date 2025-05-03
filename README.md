@@ -1,5 +1,7 @@
 # LSTM-Based Actor-Critic Neural Network with Proximal Policy Optimisation Agent for Automated Network Penetration Testing
 
+**Note:** This project was primarily developed and tested on Ubuntu 22.04 LTS.
+
 This repository contains the implementation of a reinforcement learning agent designed for automated network penetration testing within the NASim (Network Attack Simulator) environment. The agent utilizes a Long Short-Term Memory (LSTM) network combined with an Advantage Actor-Critic (A2C) framework and Proximal Policy Optimisation (PPO)-style updates to navigate complex, partially observable network scenarios and identify vulnerabilities.
 
 ## Abstract
@@ -55,9 +57,11 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
         source venv/bin/activate # On Windows use `venv\Scripts\activate`
         ```
     * Install NASim (follow instructions from the official NASim repository/documentation).
-    * Install other requirements:
+    * NASim GitHub: `https://github.com/Jjschwartz/NetworkAttackSimulator.git`
+    * NASim Documentation `https://networkattacksimulator.readthedocs.io/en/latest/`
+    * Install requirements:
         ```bash
-        pip install torch gymnasium numpy matplotlib
+        pip install -r requirements.txt
         ```
 
 ## Usage
@@ -85,30 +89,31 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
     * If testing individual scenarios, select the desired scenario from the list.
 3.  Test results (average reward, steps, success rate) will be logged to the console and `experiment.log`.
 
-this if for testing the file struct
-> Folder structure options and naming conventions for software projects
+## Folder structure
 
-### A typical top-level directory layout
-
-    .
-    ├── build                   # Compiled files (alternatively `dist`)
-    ├── docs                    # Documentation files (alternatively `doc`)
-    ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── test                    # Automated tests (alternatively `spec` or `tests`)
-    ├── tools                   # Tools and utilities
-    ├── LICENSE
-    └── README.md
-
-> Use short lowercase names at least for the top-level files and folders except
-> `LICENSE`, `README.md`
+```
+.
+├── agent.py                # Defines the NASIMOffensiveAgent class (core RL logic)
+├── main.py                 # Main script to run curriculum training
+├── memory.py               # Defines the A2CMemory class for storing transitions
+├── networks.py             # Defines the LSTM and A2CNetwork neural network architectures
+├── plot.py                 # Utility functions for plotting training metrics
+├── test_agent.py           # Interactive script for testing trained agents
+├── utils.py                # Utility functions, constants (device, seed), logging setup
+├── scenario_checkpoints/   # Directory for saving model checkpoints per scenario (created during training)
+├── curriculum_experiments/ # Directory for saving full curriculum results and models (created during training)
+├── metrics_Plot/           # Directory for saving performance plots (created during training)
+├── experiment.log          # Log file for training and testing output
+└── README.md               # This file
+```
 
 ## Results Overview
 
-The agent demonstrates successful learning across the NASim curriculum, achieving high success rates and significantly outperforming benchmark results in terms of efficiency (fewer steps) and overall reward, especially in complex `medium` scenarios with varied topologies. Detailed results, performance curves, and comparisons can be found in the generated plots (`metrics_Plot/`) and the accompanying research report (`final_report__20509910_ (4).pdf`). Network topology was found to be a critical factor influencing task difficulty.
+The agent demonstrates successful learning across the NASim curriculum, achieving high success rates and significantly outperforming benchmark results in terms of efficiency (fewer steps) and overall reward, especially in complex `medium` scenarios with varied topologies. Detailed results, performance curves, and comparisons can be found in the generated plots (`metrics_Plot/`) and the accompanying research report (`final_report.pdf`). Network topology was found to be a critical factor influencing task difficulty.
 
 ## Acknowledgements
 
-*(Refer to the Acknowledgement section in `final_report__20509910_ (4).pdf`)*
+*(Refer to the Acknowledgement section in `final_report.pdf`)*
 
 ## References
 
