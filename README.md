@@ -47,8 +47,8 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
 
 1.  **Clone the repository:**
     ```bash
-    git clone <https://github.com/Anay-Praveen/LSTM-Based_Actor-Critic_with_Proximal_Policy_Optimisation_Agent.git>
-    cd <LSTM-Based_Actor-Critic_with_Proximal_Policy_Optimisation_Agent>
+    git clone https://github.com/Anay-Praveen/LSTM-Based_Actor-Critic_with_Proximal_Policy_Optimisation_Agent.git
+    cd LSTM-Based_Actor-Critic_with_Proximal_Policy_Optimisation_Agent
     ```
 2.  **Install dependencies:**
     * It's recommended to use a virtual environment:
