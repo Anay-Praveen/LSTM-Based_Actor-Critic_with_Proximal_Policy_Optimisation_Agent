@@ -1,0 +1,62 @@
+[
+    {
+        "scenario": "tiny",
+        "completed": true,
+        "episodes": 500,
+        "training_time": 74.45788025856018,
+        "avg_reward": 136.5019989013672,
+        "best_reward": 189.0,
+        "successful_episodes": 500,
+        "success_rate": 1.0
+    },
+    {
+        "scenario": "tiny-hard",
+        "completed": true,
+        "episodes": 500,
+        "training_time": 79.57726311683655,
+        "avg_reward": 116.26799774169922,
+        "best_reward": 187.0,
+        "successful_episodes": 500,
+        "success_rate": 1.0
+    },
+    {
+        "scenario": "tiny-small",
+        "completed": true,
+        "episodes": 500,
+        "training_time": 229.69536066055298,
+        "avg_reward": -62.38600158691406,
+        "best_reward": 148.0,
+        "successful_episodes": 500,
+        "success_rate": 1.0
+    },
+    {
+        "scenario": "small",
+        "completed": true,
+        "episodes": 500,
+        "training_time": 458.0062646865845,
+        "avg_reward": -288.108,
+        "best_reward": 105.0,
+        "successful_episodes": 497,
+        "success_rate": 0.994
+    },
+    {
+        "scenario": "small-honeypot",
+        "completed": true,
+        "episodes": 500,
+        "training_time": 222.35263061523438,
+        "avg_reward": -46.06800079345703,
+        "best_reward": 155.0,
+        "successful_episodes": 500,
+        "success_rate": 1.0
+    },
+    {
+        "scenario": "small-linear",
+        "completed": true,
+        "episodes": 500,
+        "training_time": 731.9583210945129,
+        "avg_reward": -558.010009765625,
+        "best_reward": -10.0,
+        "successful_episodes": 475,
+        "success_rate": 0.95
+    }
+]

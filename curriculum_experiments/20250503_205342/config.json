@@ -1,0 +1,38 @@
+{
+    "scenarios": [
+        "tiny",
+        "tiny-hard",
+        "tiny-small",
+        "small",
+        "small-honeypot",
+        "small-linear",
+        "medium",
+        "medium-single-site",
+        "medium-multi-site"
+    ],
+    "episodes_per_scenario": {
+        "tiny": 500,
+        "tiny-hard": 500,
+        "tiny-small": 500,
+        "small": 500,
+        "small-honeypot": 500,
+        "small-linear": 500,
+        "medium": 2000,
+        "medium-single-site": 2000,
+        "medium-multi-site": 2000
+    },
+    "timestamp": "20250503_205342",
+    "hyperparameters": {
+        "hidden_size": 128,
+        "lstm_layers": 5,
+        "gamma": 0.99,
+        "gae_lambda": 0.95,
+        "clip_ratio": 0.2,
+        "value_coef": 0.5,
+        "entropy_coef": 0.01,
+        "max_grad_norm": 0.5,
+        "ppo_epochs": 4,
+        "ppo_batch_size": 64,
+        "progress_advantage_alpha": 1.0
+    }
+}
