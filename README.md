@@ -86,8 +86,20 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
 3.  Test results (average reward, steps, success rate) will be logged to the console and `experiment.log`.
 
 ## File Structure
+.
+├── agent.py              # Core RL logic
+├── main.py               # Script for curriculum training
+├── memory.py             # Memory buffer for storing transitions
+├── networks.py           # LSTM and A2C network architectures
+├── plot.py               # Utility functions for plotting metrics
+├── test_agent.py         # Script for interactive testing
+├── utils.py              # Utility functions for logging, seeds, etc.
+├── scenario_checkpoints/ # Directory for scenario model checkpoints
+├── curriculum_experiments/ # Directory for curriculum training results
+├── metrics_Plot/         # Directory for training performance plots
+├── experiment.log        # Log file for training/testing output
+└── README.md             # This file
 
-.├── agent.py             # Defines the NASIMOffensiveAgent class (core RL logic)├── main.py              # Main script to run curriculum training├── memory.py            # Defines the A2CMemory class for storing transitions├── networks.py          # Defines the LSTM and A2CNetwork neural network architectures├── plot.py              # Utility functions for plotting training metrics├── test_agent.py        # Interactive script for testing trained agents├── utils.py             # Utility functions, constants (device, seed), logging setup├── scenario_checkpoints/ # Directory for saving model checkpoints per scenario (created during training)├── curriculum_experiments/ # Directory for saving full curriculum results and models (created during training)├── metrics_Plot/        # Directory for saving performance plots (created during training)├── experiment.log       # Log file for training and testing output└── README.md            # This file
 ## Results Overview
 
 The agent demonstrates successful learning across the NASim curriculum, achieving high success rates and significantly outperforming benchmark results in terms of efficiency (fewer steps) and overall reward, especially in complex `medium` scenarios with varied topologies. Detailed results, performance curves, and comparisons can be found in the generated plots (`metrics_Plot/`) and the accompanying research report (`final_report__20509910_ (4).pdf`). Network topology was found to be a critical factor influencing task difficulty.
