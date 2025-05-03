@@ -5143,3 +5143,7 @@ Completed training on small-linear
 2025-05-03 22:41:42,146 [INFO] Progress: 1290/2000 episodes | Recent Avg Reward: -1242.00 | Recent Success Rate: 80.00%
 2025-05-03 22:41:46,665 [INFO] Episode 1291/2000 | Reward: -2278.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0657
 2025-05-03 22:41:51,103 [INFO] Episode 1292/2000 | Reward: -2306.00 | Steps: 2000 | Success: No (Timeout) | Entropy: 5.0642
+2025-05-03 22:41:53,584 [INFO] Episode 1293/2000 | Reward: -1058.00 | Steps: 1106 | Success: Yes | Entropy: 5.0586
+2025-05-03 22:41:56,308 [INFO] Episode 1294/2000 | Reward: -1149.00 | Steps: 1178 | Success: Yes | Entropy: 5.0555
+2025-05-03 22:41:59,350 [INFO] Episode 1295/2000 | Reward: -1399.00 | Steps: 1366 | Success: Yes | Entropy: 5.0552
+2025-05-03 22:42:03,107 [INFO] Episode 1296/2000 | Reward: -1773.00 | Steps: 1695 | Success: Yes | Entropy: 5.0593
