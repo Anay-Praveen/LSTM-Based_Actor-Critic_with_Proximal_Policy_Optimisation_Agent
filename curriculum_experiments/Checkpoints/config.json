@@ -25,6 +25,7 @@
     "hyperparameters": {
         "hidden_size": 128,
         "lstm_layers": 5,
+        "learning_rate": 0.0003,
         "gamma": 0.99,
         "gae_lambda": 0.95,
         "clip_ratio": 0.2,

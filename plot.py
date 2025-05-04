@@ -1,7 +1,4 @@
 import matplotlib.pyplot as plt
-
-
-
 def calculate_rolling_average(data, window_size=100):
     """Calculate rolling average for a given data list."""
     if len(data) < window_size:
