@@ -93,18 +93,64 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
 
 ```
 .
-├── agent.py                # Defines the NASIMOffensiveAgent class (core RL logic)
-├── main.py                 # Main script to run curriculum training
-├── memory.py               # Defines the A2CMemory class for storing transitions
-├── networks.py             # Defines the LSTM and A2CNetwork neural network architectures
-├── plot.py                 # Utility functions for plotting training metrics
-├── test_agent.py           # Interactive script for testing trained agents
-├── utils.py                # Utility functions, constants (device, seed), logging setup
-├── scenario_checkpoints/   # Directory for saving model checkpoints per scenario (created during training)
-├── curriculum_experiments/ # Directory for saving full curriculum results and models (created during training)
-├── metrics_Plot/           # Directory for saving performance plots (created during training)
-├── experiment.log          # Log file for training and testing output
-└── README.md               # This file
+├── agent.py                 # Defines the NASIMOffensiveAgent class (core RL logic)
+├── curriculum_experiments/  # Directory for saving full curriculum results and models
+│   ├── Checkpoints/         # Contains specific model checkpoints from curriculum runs
+│   │   ├── checkpoint_after_medium.pt
+│   │   ├── checkpoint_after_medium-multi-site.pt
+│   │   ├── checkpoint_after_medium-single-site.pt
+│   │   ├── checkpoint_after_small.pt
+│   │   ├── checkpoint_after_small-honeypot.pt
+│   │   ├── checkpoint_after_small-linear.pt
+│   │   ├── checkpoint_after_tiny.pt
+│   │   ├── checkpoint_after_tiny-hard.pt
+│   │   ├── checkpoint_after_tiny-small.pt
+│   │   └── config.json
+│   ├── curriculum_results.json # Stores results from a curriculum run
+│   ├── final_model.pt         # The final trained model from the curriculum
+│   └── scenario_results.json  # Stores results per scenario within the curriculum
+├── experiment.log           # Log file for training and testing output
+├── main.py                  # Main script to run curriculum training
+├── memory.py                # Defines the A2CMemory class for storing transitions
+├── metrics_Plot/            # Directory for saving performance plots
+│   ├── Testing/             # Plots related to agent testing
+|   |   ├── medium/
+│   |   ├── medium-multi-site/
+│   |   ├── medium-single-site/
+│   |   ├── small/
+│   |   ├── small-honeypot/
+│   |   ├── small-linear/
+│   |   ├── tiny/
+│   |   ├── tiny-hard/
+│   |   └── tiny-small/  
+│   └── Training/
+|       ├── medium/
+│       ├── medium-multi-site/
+│       ├── medium-single-site/
+│       ├── small/
+│       ├── small-honeypot/
+│       ├── small-linear/
+│       ├── tiny/
+│       ├── tiny-hard/
+│       └── tiny-small/              # Plots related to agent training
+├── networks.py              # Defines the LSTM and A2CNetwork neural network architectures
+├── plot.py                  # Utility functions for plotting training metrics
+├── README.md                # Project description file (like the original text)
+├── Report/                  # Contains project reports
+│   └── Anay_Praveen_20509910_Final_Report.pdf
+├── requirements.txt         # Lists project dependencies
+├── scenario_checkpoints/    # Directory for saving model checkpoints per individual scenario
+│   ├── medium/
+│   ├── medium-multi-site/
+│   ├── medium-single-site/
+│   ├── small/
+│   ├── small-honeypot/
+│   ├── small-linear/
+│   ├── tiny/
+│   ├── tiny-hard/
+│   └── tiny-small/          # Each subfolder likely contains checkpoints for that specific scenario
+├── test_agent.py            # Interactive script for testing trained agents
+└── utils.py   
 ```
 
 ## Results Overview
