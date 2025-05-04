@@ -74,11 +74,14 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
 ### Training
 
 1.  Run the main training script. This will execute the curriculum learning process sequentially through the predefined scenarios (`tiny` -> `small` -> `medium`).
+2.  == Performance Note ==
+      Training the full curriculum takes approximately 3.5 to 4 hours on an NVIDIA RTX 4070 Super GPU.
+      On hardware with lower specifications, expect significantly longer training times, potentially 5 hours or more.
     ```bash
     python main.py
     ```
-2.  Training progress, logs, and plots will be saved in directories like `scenario_checkpoints/`, `curriculum_experiments/`, and `metrics_Plot/`.
-3.  Checkpoints (`best_model.pt`, `final_model.pt`) will be saved for each scenario and for the overall curriculum.
+3.  Training progress, logs, and plots will be saved in directories like `scenario_checkpoints/`, `curriculum_experiments/`, and `metrics_Plot/`.
+4.  Checkpoints (`best_model.pt`, `final_model.pt`) will be saved for each scenario and for the overall curriculum.
 
 ### Testing
 
