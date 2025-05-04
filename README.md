@@ -1,4 +1,7 @@
 # LSTM-Based Actor-Critic Neural Network with Proximal Policy Optimisation Agent for Automated Network Penetration Testing
+## Name: Anay Praveen
+## Student ID:20509910
+## Supervisor Name : El Ioini Nabil
 
 **Note:** This project was primarily developed and tested on Ubuntu 22.04 LTS.
 
