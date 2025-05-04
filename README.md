@@ -42,6 +42,7 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
 * NASim (`nasim`)
 * NumPy (`numpy`)
 * Matplotlib (`matplotlib`)
+* Pandas (`pandas`)
 
 ## Installation
 
@@ -62,6 +63,9 @@ The escalating complexity and dynamic nature of contemporary cyber threats prese
     * Install requirements:
         ```bash
         pip install nasim
+        pip install pandas
+        pip install numpy
+        pip install matplotlib
         pip install torch==2.4.1+cu121 torchvision==0.19.1+cu121 torchaudio==2.4.1+cu121 --index-url https://download.pytorch.org/whl/cu121 
         ```
 
